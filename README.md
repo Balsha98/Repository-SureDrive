@@ -1,2 +1,2 @@
-# Repository-SureDrive
-SureDrive - Car Dealership Website
+# SureDrive - Car Dealership Website
+The README file will soon be updated.
