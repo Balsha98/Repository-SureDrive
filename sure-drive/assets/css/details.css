@@ -1,0 +1,401 @@
+/* CAR DETAILS SECTION */
+.section-car-user-details {
+    position: relative;
+    height: 87.5vh;
+}
+
+/* CAR DETAILS */
+.div-car-details-container {
+    width: 100%;
+    height: inherit;
+}
+
+.car-name-header {
+    position: absolute;
+    top: 1.6rem;
+    left: 1.6rem;
+    padding: 0.4rem 1.6rem;
+    background-color: var(--gray-shade);
+    border-radius: 0.4rem;
+}
+
+.div-lg-car-img-container {
+    width: inherit;
+    height: inherit;
+}
+
+.div-lg-car-img-container img {
+    width: 100%;
+    height: inherit;
+    object-position: center;
+    object-fit: cover;
+}
+
+/* SHOW USER BUTTON */
+.div-user-btn-container {
+    position: absolute;
+    bottom: 1.6rem;
+    right: 1.6rem;
+    transition: opacity 0.5s;
+    cursor: pointer;
+}
+
+.hide-btn {
+    opacity: 0;
+}
+
+.div-user-btn-container button {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.8rem;
+    height: 4.8rem;
+    background-color: var(--gray-shade);
+    box-shadow: 0 0 2.4rem var(--opaque-gray-shade-sm);
+    border-radius: 50%;
+}
+
+.div-user-btn-container ion-icon {
+    font-size: 2rem;
+}
+
+.div-user-btn-container:hover {
+    opacity: 0.8;
+}
+
+/* USER DETAILS */
+.div-user-details-container {
+    position: absolute;
+    bottom: 1.6rem;
+    right: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    width: 48rem;
+    padding: 2.4rem;
+    background-color: var(--opaque-gray-shade-md);
+    backdrop-filter: blur(1.2rem);
+    border-radius: 0.8rem;
+    transform: translateX(125%);
+    transition: transform 0.5s;
+}
+
+.show-user-details {
+    transform: translateX(0);
+}
+
+/* USER DETAILS CLOSE BUTTON */
+.div-close-btn-container {
+    position: absolute;
+    top: 2.4rem;
+    right: 2.4rem;
+}
+
+.div-close-btn-container button {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.div-close-btn-container ion-icon {
+    font-size: 2.4rem;
+    transition: color 0.5s;
+}
+
+.div-close-btn-container ion-icon:hover {
+    color: var(--primary);
+}
+
+/* USER DETAILS HEADER */
+.user-details-header {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+.div-user-img-container {
+    width: 6.4rem;
+    height: 6.4rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.div-user-img-container img {
+    width: 100%;
+    height: inherit;
+    object-position: center;
+    object-fit: cover;
+}
+
+.div-user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.div-verified-container {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.div-verified-container span {
+    font-size: 1.2rem;
+}
+
+.div-verified-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    background-color: var(--green-shade);
+    border-radius: 50%;
+}
+
+.div-verified-icon ion-icon {
+    font-size: 1.2rem;
+}
+
+/* CONTACT DETAILS CONTAINER */
+.div-contact-details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+}
+
+.div-contact-details-container h4::after {
+    content: "";
+    position: absolute;
+    bottom: -0.2rem;
+    left: 0;
+    width: 6.4rem;
+    height: 0.2rem;
+    background-color: var(--primary);
+    border-radius: 0.4rem 0.4rem 0 0;
+}
+
+.contact-details-list {
+    display: inherit;
+    flex-direction: inherit;
+    gap: 1.6rem;
+}
+
+.contact-details-list-item {
+    position: relative;
+    display: inherit;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+.contact-details-list-item::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0.2rem;
+    height: 100%;
+    background-color: var(--white);
+    border-radius: 0.4rem 0 0 0.4rem;
+    transition: background-color 0.5s;
+}
+
+.contact-details-list-item ion-icon {
+    font-size: 2.4rem;
+    transition: color 0.5s;
+}
+
+/* LOCATION CONTAINER */
+.div-location-container span {
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: color 0.5s;
+}
+
+.div-location-container a:link,
+.div-location-container a:visited {
+    display: block;
+    font-size: 1.6rem;
+    transition: color 0.5s;
+}
+
+/* HOVER */
+.contact-details-list-item a:link,
+.contact-details-list-item a:visited {
+    font-size: 1.6rem;
+    transition: color 0.5s;
+}
+
+.contact-details-list-item:hover ion-icon,
+.contact-details-list-item:hover span,
+.contact-details-list-item:hover a:link,
+.contact-details-list-item:hover a:visited {
+    color: var(--primary);
+}
+
+.contact-details-list-item:hover::after {
+    background-color: var(--primary);
+}
+
+/* FEATURES CONTAINER */
+.div-car-features-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4.8rem;
+    padding: 3.2rem;
+    background-color: var(--gray-shade);
+}
+
+.car-features-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.car-features-list-item {
+    display: inherit;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.figure-feature {
+    display: inherit;
+    flex-direction: inherit;
+    align-items: inherit;
+    gap: 1.2rem;
+}
+
+.figure-feature img {
+    width: 25%;
+}
+
+.figure-feature figcaption {
+    position: relative;
+    font-size: 2rem;
+}
+
+.figure-feature figcaption::after {
+    content: "";
+    position: absolute;
+    bottom: -0.4rem;
+    left: 50%;
+    width: 8rem;
+    height: 0.2rem;
+    background-color: var(--primary);
+    border-radius: 0.4rem 0.4rem 0 0;
+    transform: translateX(-50%);
+}
+
+.car-features-list-item span {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
+
+/* CAR DESCRIPTION SECTION */
+.section-car-description {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 3.2rem;
+    background-color: var(--gray-shade);
+}
+
+.div-car-description-container {
+    display: inherit;
+    flex-direction: column;
+    gap: 3.2rem;
+}
+
+.car-description-header span {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: var(--primary);
+}
+
+.car-description-header h2::after {
+    content: "";
+    position: absolute;
+    bottom: -0.4rem;
+    left: 0;
+    width: 9.6rem;
+    height: 0.2rem;
+    background-color: var(--primary);
+    border-radius: 0.4rem 0.4rem 0 0;
+}
+
+.car-description-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.car-description-list-item {
+    display: inherit;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.car-description-list-item p {
+    position: relative;
+    font-size: 1.8rem;
+}
+
+.color span {
+    padding: 0 1.2rem;
+    border-radius: 0.4rem;
+}
+
+.original-price::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 102.5%;
+    height: 0.2rem;
+    background-color: var(--primary);
+    border-radius: 0.4rem;
+    transform: translate(-50%, -50%);
+}
+
+.final-price span {
+    padding: 0.2rem 1.2rem;
+    background-color: var(--primary);
+    border-radius: 0.4rem;
+}
+
+.span-list-item-dot {
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: var(--primary);
+    border-radius: 50%;
+}
+
+/* CAR DESCRIPTION CARD */
+.div-description-card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 36rem;
+    height: inherit;
+}
+
+.div-sm-car-img-container {
+    width: 100%;
+    height: 16rem;
+    border-radius: 0.8rem;
+    overflow: hidden;
+}
+
+.div-sm-car-img-container img {
+    width: 100%;
+    height: inherit;
+    object-position: center;
+    object-fit: cover;
+}

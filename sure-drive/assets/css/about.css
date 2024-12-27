@@ -1,0 +1,360 @@
+/* SECTION HERO */
+.section-hero {
+    position: relative;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    height: 87.5vh;
+    padding: 0 6.4rem;
+    background-image: url(../media/hero-background.jpeg);
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+}
+
+/* SECTION HERO CONTAINER */
+.section-hero-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 4.8rem;
+    padding: 3.2rem;
+    backdrop-filter: blur(1.2rem);
+    border-radius: 0.8rem;
+    transform: translateX(-150%);
+    transition: transform 1s;
+    z-index: 2;
+}
+
+.show-hero-container {
+    transform: translateX(0);
+}
+
+/* SECTION HERO HEADER */
+.section-hero-header h2 {
+    margin-bottom: 1.2rem;
+    font-size: 4.4rem;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.section-hero-header p {
+    font-size: 2rem;
+}
+
+.section-hero-header span {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* SECTION HERO LOGO */
+.section-hero-logo {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(100%);
+    transition: transform 1s;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.show-hero-logo {
+    transform: translateY(0);
+}
+
+.section-hero-logo img {
+    width: 100%;
+    filter: brightness(0.9);
+}
+
+/* HERO BLUR OVERLAY */
+.blur-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: inherit;
+    backdrop-filter: blur(0.4rem);
+    z-index: 1;
+}
+
+/* SECTION PARTNERS */
+.section-partners {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3.2rem;
+    padding: 6.4rem;
+    background-color: var(--gray-shade);
+}
+
+.partners-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.partners-list img {
+    height: 9.6rem;
+    filter: grayscale(0.8);
+}
+
+/* SECTION PURCHASE PROCESS */
+.section-purchase-process {
+    display: flex;
+    flex-direction: column;
+    gap: 8rem;
+    padding: 6.4rem;
+    background-color: var(--gray-shade);
+}
+
+.section-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.section-header span {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    color: var(--primary);
+}
+
+.section-header h2 {
+    font-size: 3.6rem;
+}
+
+/* PURCHASE PROCESS STEPS LIST */
+.process-steps-list {
+    display: grid;
+    row-gap: 8rem;
+}
+
+.process-steps-list-item {
+    display: inherit;
+    align-items: center;
+    column-gap: 8rem;
+}
+
+/* STEP TEXT CONTAINER */
+.div-step-text-container {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+    gap: 3.2rem;
+}
+
+.step-text-header > span {
+    font-size: 5.2rem;
+    font-weight: 600;
+}
+
+.step-text-header h3 {
+    font-size: 3rem;
+}
+
+.step-text-header h3 span {
+    color: var(--primary);
+}
+
+.div-step-text-container p {
+    font-size: 1.8rem;
+    line-height: 1.5;
+}
+
+/* STEP IMAGE */
+.step-img {
+    position: relative;
+    width: 100%;
+    border-radius: 0.4rem;
+}
+
+.img-shadow-left {
+    box-shadow: -2.4rem -2.4rem 0 var(--opaque-primary-sm);
+}
+
+.img-shadow-right {
+    box-shadow: 2.4rem -2.4rem 0 var(--opaque-primary-sm);
+}
+
+/* FEATURES SECTION */
+.section-features {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+    padding: 6.4rem;
+    background-color: var(--opaque-gray-shade-hg);
+}
+
+/* FEATURES LIST */
+.features-list {
+    display: inherit;
+    justify-content: space-between;
+    gap: 4.8rem;
+}
+
+.features-list-item {
+    display: inherit;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+.feature-item-header {
+    display: inherit;
+    flex-direction: inherit;
+    align-items: inherit;
+    gap: 0.8rem;
+}
+
+.span-feature-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.8rem;
+    height: 4.8rem;
+    font-size: 2.4rem;
+    background-color: var(--opaque-primary-sm);
+    border-radius: 50%;
+}
+
+.feature-item-header h3 span {
+    color: var(--primary);
+}
+
+.features-list-item p {
+    font-size: 1.6rem;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* TESTIMONIALS SECTIONS */
+.section-testimonials {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+    padding: 6.4rem 6.4rem 8rem;
+    background-color: var(--gray-shade);
+}
+
+/* TESTIMONIALS LIST */
+.testimonials-list {
+    position: relative;
+    height: 36rem;
+}
+
+.testimonials-list-item {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+    max-width: 64rem;
+    height: fit-content;
+    padding: 3.2rem 6.4rem;
+    background-color: var(--gray);
+    border-radius: 0.8rem;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.active-testimonial {
+    box-shadow: inset 0 0 0 0.4rem var(--gray-shade);
+}
+
+/* TESTIMONIAL TEXT */
+.div-testimonial-text-container {
+    display: inherit;
+    flex-direction: inherit;
+    gap: 1.6rem;
+}
+
+.div-testimonial-text-container h3::after {
+    content: "";
+    position: absolute;
+    bottom: -0.2rem;
+    left: 0;
+    width: 8rem;
+    height: 0.2rem;
+    background-color: var(--primary);
+    border-radius: 0.4rem 0.4rem 0 0;
+}
+
+.testimonial-quote {
+    font-size: 1.6rem;
+    font-style: italic;
+}
+
+/* TESTIMONIAL PROFILE */
+.div-testimonial-profile-container {
+    display: inherit;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 3.2rem;
+}
+
+.div-testimonial-profile {
+    display: inherit;
+    align-items: inherit;
+    gap: 1.2rem;
+}
+
+.div-testimonial-profile img {
+    height: 9.6rem;
+    border-radius: 50%;
+}
+
+/* TESTIMONIAL PROFILE TEXT */
+.div-testimonial-profile-text-container {
+    line-height: 1.5;
+}
+
+.div-testimonial-profile-text-container p {
+    font-size: 2rem;
+}
+
+.div-testimonial-profile-text-container span {
+    font-size: 1.4rem;
+}
+
+/* TESTIMONIAL RATINGS */
+.testimonial-ratings-list {
+    display: inherit;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.2rem;
+}
+
+.testimonial-ratings-list-item ion-icon {
+    font-size: 1.4rem;
+    color: var(--yellow);
+}
+
+/* CAROUSEL LINES LIST */
+.carousel-lines-list {
+    position: absolute;
+    bottom: 4.8rem;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    transform: translateX(-50%);
+}
+
+.carousel-lines-list-item {
+    width: 4.8rem;
+    height: 0.4rem;
+    background-color: var(--gray);
+    border-radius: 0.4rem 0.4rem 0 0;
+    transition: background-color 0.5s;
+    cursor: pointer;
+}
+
+.active-line {
+    background-color: var(--primary);
+}

@@ -1,0 +1,74 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url(../media/hero-background.jpeg);
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+/* BODY BLUR OVERLAY */
+.blur-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: inherit;
+    background-color: var(--opaque-gray-shade-md);
+    backdrop-filter: blur(0.4rem);
+    z-index: -1;
+}
+
+/* LOGIN CONTAINER */
+.div-login-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.6rem;
+    max-width: 70rem;
+    height: fit-content;
+    padding: 3.2rem 9.6rem 6.4rem;
+    background-color: var(--opaque-gray-shade-md);
+    box-shadow: 0 1.6rem 3.2rem var(--opaque-gray-shade-sm);
+    backdrop-filter: blur(1.2rem);
+    border-radius: 0.8rem;
+}
+
+/* LOGIN CONTAINER HEADER */
+.login-container-header {
+    color: var(--white);
+    text-align: center;
+}
+
+.login-container-header p {
+    font-size: 1.4rem;
+    color: inherit;
+}
+
+.login-container-header a:link,
+.login-container-header a:visited {
+    font-weight: 500;
+    color: var(--primary);
+    transition: color 0.5s;
+}
+
+.login-container-header a:hover,
+.login-container-header a:active {
+    color: var(--primary-shade);
+}
+
+/* LOGIN FORM */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    width: 100%;
+}
+
+/* INPUT CONTAINERS */
+.div-multi-input-containers {
+    row-gap: 1.6rem;
+}
