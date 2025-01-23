@@ -42,7 +42,7 @@ const generateTestimonials = async function () {
         .then((response) => response.json())
         .then((response) => response);
 
-    let i = 1;
+    let i = 0;
     for (const { heading, quote, image, name, location } of testimonials) {
         testimonialsList.append(`
             <li class="testimonials-list-item ${i === 2 ? "active-testimonial" : ""}" data-carousel-index="${i++}">
@@ -87,11 +87,15 @@ const generateTestimonials = async function () {
     testimonialsListItems.each((_, li) => {
         $(li).click(setTestimonialIntoView);
     });
+
+    // Set the middle, by default.
+    spinTestimonials(2);
 };
 
 const setTestimonialIntoView = function () {
     const classAttr = $(this).attr("class");
     const carouselIndex = +$(this).data("carousel-index");
+    spinTestimonials(carouselIndex);
 
     testimonialsListItems.each((_, li) => {
         if ($(li).hasClass("active-testimonial")) {
@@ -111,6 +115,12 @@ const setTestimonialIntoView = function () {
         if (i === carouselIndex) {
             $(li).addClass("active-line");
         }
+    });
+};
+
+const spinTestimonials = function (index) {
+    testimonialsListItems.each((i, li) => {
+        li.style = `transform: translate(${translateX[index][i]}%, -50%);`;
     });
 };
 
