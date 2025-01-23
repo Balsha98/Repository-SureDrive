@@ -1,7 +1,7 @@
 <?php
-require_once '../models/Session.php';
-require_once '../models/Database.php';
-require_once '../helpers/Encoder.php';
+require_once '../assets/models/Session.php';
+require_once '../assets/models/Database.php';
+require_once '../assets/helpers/Encoder.php';
 
 Session::start_session();
 $database = Database::get_instance();
