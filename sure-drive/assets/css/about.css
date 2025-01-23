@@ -271,13 +271,13 @@
 .div-testimonial-text-container {
     display: inherit;
     flex-direction: inherit;
-    gap: 1.6rem;
+    gap: 1.8rem;
 }
 
 .div-testimonial-text-container h3::after {
     content: "";
     position: absolute;
-    bottom: -0.2rem;
+    bottom: -0.4rem;
     left: 0;
     width: 8rem;
     height: 0.2rem;
