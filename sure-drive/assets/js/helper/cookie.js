@@ -1,5 +1,3 @@
-"use strict";
-
 const setCookie = function (key, value) {
     document.cookie = `${key}=${value};`;
 };
@@ -17,5 +15,3 @@ const getCookie = function (key) {
         }
     }
 };
-
-export { setCookie, unsetCookie, getCookie };

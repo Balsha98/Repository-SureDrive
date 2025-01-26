@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="<?php echo SERVER; ?>/assets/css/general.css?ts=<?php echo $timestamp; ?>">
     <link rel="stylesheet" href="<?php echo SERVER; ?>/assets/css/<?php echo $file; ?>.css?ts=<?php echo $timestamp; ?>">
     <script src="<?php echo SERVER; ?>/assets/js/lib/jQuery.js" defer></script>
-    <script type="module" src="<?php echo SERVER; ?>/assets/js/general.js" defer></script>
-    <script type="module" src="<?php echo SERVER; ?>/assets/js/<?php echo $file; ?>.js" defer></script>
+    <script type="module" src="<?php echo SERVER; ?>/assets/js/helper/general.js" defer></script>
+    <script type="module" src="<?php echo SERVER; ?>/assets/js/views/<?php echo $file; ?>.js" defer></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
     <title>SureDrive | <?php echo $title; ?></title>
 </head>

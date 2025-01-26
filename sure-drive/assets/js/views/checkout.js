@@ -1,4 +1,4 @@
-import { unsetCookie } from "./cookie.js";
+import { unsetCookie } from "./helper/cookie.js";
 
 // ***** DOM ELEMENTS ***** //
 const formInputDivs = $(".div-form-inputs-container");

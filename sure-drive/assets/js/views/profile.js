@@ -1,5 +1,5 @@
-import { divToTop } from "../general.js";
-import { handleRequest } from "../request.js";
+import { divToTop } from "../helper/general.js";
+import { handleRequest } from "../helper/request.js";
 
 // ***** DOM ELEMENTS ***** //
 const popupCloseBtns = $(".btn-close-popup");
@@ -185,9 +185,7 @@ const saveProfile = function (event) {
     const profileInputs = ["id", "username", "email", "phone", "location"];
     profileInputs.forEach((input) => {
         let value = $(`#edit_profile_${input}`).val();
-        if (!isNaN(value)) {
-            value = +value;
-        }
+        if (!isNaN(value)) value = +value;
 
         data[`edit_profile_${input}`] = value;
     });

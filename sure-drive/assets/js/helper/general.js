@@ -1,4 +1,4 @@
-import { setCookie } from "./hepler/cookie.js";
+import { setCookie } from "./cookie.js";
 
 // ***** DOM ELEMENTS ***** //
 const pageHeader = $(".page-header");

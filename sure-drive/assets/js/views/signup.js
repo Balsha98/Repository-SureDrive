@@ -1,4 +1,4 @@
-import { handleRequest } from "../request.js";
+import { handleRequest } from "../helper/request.js";
 
 // ***** DOM ELEMENTS ***** //
 const formSubmitBtn = $(".btn-form-submit");
