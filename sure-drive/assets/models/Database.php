@@ -4,12 +4,12 @@ class Database extends PDO
 {
     private static Database $db;
 
-    private function __construct($db_name, $username, $password)
+    private function __construct($dbName, $username, $password)
     {
-        parent::__construct("mysql:hostname=localhost;dbname={$db_name};", $username, $password);
+        parent::__construct("mysql:hostname=localhost;dbname={$dbName};", $username, $password);
     }
 
-    static function get_instance()
+    public static function getInstance()
     {
         if (!isset(self::$db)) {
             self::$db = new Database('car_dealership', 'root', '');
@@ -20,9 +20,9 @@ class Database extends PDO
 
     // ***** USER ***** //
 
-    public function verify_user_login($username, $password)
+    public function verifyUserLogin($username, $password)
     {
-        $data = $this->get_user_data($username);
+        $data = $this->getUserData($username);
 
         if (is_array($data)) {
             if ($data['username'] === $username) {
@@ -33,7 +33,7 @@ class Database extends PDO
         return false;
     }
 
-    public function user_signup($data)
+    public function userSignup($data)
     {
         $query = '
             INSERT INTO user (role_id, username, password, user_email) 
@@ -61,7 +61,7 @@ class Database extends PDO
         $statement->execute();
     }
 
-    public function get_all_users()
+    public function getAllUsers()
     {
         $query = '
             SELECT * FROM user 
@@ -79,7 +79,7 @@ class Database extends PDO
         return null;
     }
 
-    public function get_user_data($username)
+    public function getUserData($username)
     {
         $query = "
             SELECT * FROM user 
@@ -97,9 +97,9 @@ class Database extends PDO
         return null;
     }
 
-    public function get_user_type_data($table, $user_id)
+    public function getUserTypeData($table, $userID)
     {
-        $query = "SELECT * FROM {$table} WHERE user_id = {$user_id};";
+        $query = "SELECT * FROM {$table} WHERE user_id = {$userID};";
         $statement = self::$db->query($query);
 
         if ($statement->execute()) {
@@ -109,7 +109,7 @@ class Database extends PDO
         return null;
     }
 
-    public function get_sellers_and_owners()
+    public function getSellersAndOwners()
     {
         $query = '
             SELECT user_id, username 
@@ -127,7 +127,7 @@ class Database extends PDO
         return null;
     }
 
-    public function insert_new_user($data)
+    public function insertNewUser($data)
     {
         $query = '
             INSERT INTO user (
@@ -139,10 +139,10 @@ class Database extends PDO
             );
         ';
 
-        $this->alter_user_helper('add', $data, $query);
+        $this->alterUserHelper('add', $data, $query);
     }
 
-    public function update_user_by_id($id, $data)
+    public function updateUserByID($id, $data)
     {
         $query = "
             UPDATE user SET 
@@ -151,10 +151,10 @@ class Database extends PDO
             WHERE user_id = {$id};
         ";
 
-        $this->alter_user_helper('edit', $data, $query);
+        $this->alterUserHelper('edit', $data, $query);
     }
 
-    public function update_user_profile($id, $data)
+    public function updateUserProfile($id, $data)
     {
         $query = "
             UPDATE user SET 
@@ -182,7 +182,7 @@ class Database extends PDO
 
     // ***** CAR ***** //
 
-    public function get_all_cars()
+    public function getAllCars()
     {
         $query = '
             SELECT * FROM car 
@@ -200,9 +200,9 @@ class Database extends PDO
         return null;
     }
 
-    public function get_bought_cars_by_user_id($buyer_id)
+    public function getBoughtCarsByUserID($buyerID)
     {
-        $query = "SELECT * FROM cars_bought WHERE user_id = {$buyer_id};";
+        $query = "SELECT * FROM cars_bought WHERE user_id = {$buyerID};";
         $statement = self::$db->query($query);
 
         if ($statement->execute()) {
@@ -212,7 +212,7 @@ class Database extends PDO
         return null;
     }
 
-    public function get_filtered_cars($filters)
+    public function getFilteredCars($filters)
     {
         $query = '
             SELECT car.car_id FROM car 
@@ -247,7 +247,7 @@ class Database extends PDO
         return null;
     }
 
-    public function get_distinct_car_makes()
+    public function getDistinctCarMakes()
     {
         $query = 'SELECT DISTINCT make FROM car;';
         $statement = self::$db->query($query);
@@ -259,13 +259,13 @@ class Database extends PDO
         return null;
     }
 
-    public function get_cars_for_user_id($user_type, $user_id)
+    public function getCarsForUserID($userType, $userID)
     {
         $query = "
             SELECT * FROM car 
             INNER JOIN description 
             ON car.car_id = description.car_id 
-            WHERE description.{$user_type}_id = {$user_id} 
+            WHERE description.{$userType}_id = {$userID} 
             ORDER BY car.car_id ASC;
         ";
 
@@ -278,7 +278,7 @@ class Database extends PDO
         return null;
     }
 
-    public function get_car_details_by_id($car_id)
+    public function getCarDetailsByID($car_id)
     {
         $query = "
             SELECT * FROM car 
@@ -298,14 +298,14 @@ class Database extends PDO
         return null;
     }
 
-    public function insert_new_car($data)
+    public function insertNewCar($data)
     {
-        $this->insert_new_car_details($data);
-        $data['add_car_id'] = $this->get_last_added_item_id('car')['id'];
-        $this->insert_new_car_description($data);
+        $this->insertNewCarDetails($data);
+        $data['add_car_id'] = $this->getLastAddedItemID('car')['id'];
+        $this->insertNewCarDescription($data);
     }
 
-    private function insert_new_car_details($data)
+    private function insertNewCarDetails($data)
     {
         $query = '
             INSERT INTO car (make, model, year) 
@@ -316,10 +316,10 @@ class Database extends PDO
             'make', 'model', 'year'
         ];
 
-        $this->alter_car_helper('add', $data, $query, $params);
+        $this->alterCarHelper('add', $data, $query, $params);
     }
 
-    private function insert_new_car_description($data)
+    private function insertNewCarDescription($data)
     {
         $query = '
             INSERT INTO description (
@@ -336,10 +336,10 @@ class Database extends PDO
             'fuel', 'color', 'shift', 'original_price', 'final_price'
         ];
 
-        $this->alter_car_helper('add', $data, $query, $params);
+        $this->alterCarHelper('add', $data, $query, $params);
     }
 
-    public function insert_new_bought_car($data)
+    public function insertNewBoughtCar($data)
     {
         $query = '
             INSERT INTO cars_bought (
@@ -356,10 +356,10 @@ class Database extends PDO
             'mileage', 'shift', 'final_price'
         ];
 
-        $this->insert_checkout_helper($data, $query, $params);
+        $this->insertCheckoutHelper($data, $query, $params);
     }
 
-    public function update_car_by_id($id, $data)
+    public function updateCarByID($id, $data)
     {
         $query = "
             UPDATE car 
@@ -378,12 +378,12 @@ class Database extends PDO
             'horse_power', 'fuel', 'color', 'shift', 'original_price', 'final_price'
         ];
 
-        $this->alter_car_helper('edit', $data, $query, $params);
+        $this->alterCarHelper('edit', $data, $query, $params);
     }
 
     // ***** SALES ***** //
 
-    public function get_all_sales()
+    public function getAllSales()
     {
         $query = 'SELECT * FROM sale;';
         $statement = self::$db->query($query);
@@ -395,9 +395,9 @@ class Database extends PDO
         return null;
     }
 
-    public function get_sales_for_user_id($user_id)
+    public function getSalesForUserID($userID)
     {
-        $query = "SELECT * FROM sale WHERE user_id = {$user_id};";
+        $query = "SELECT * FROM sale WHERE user_id = {$userID};";
         $statement = self::$db->query($query);
 
         if ($statement->execute()) {
@@ -407,7 +407,7 @@ class Database extends PDO
         return null;
     }
 
-    public function insert_new_sale($data)
+    public function insertNewSale($data)
     {
         $query = '
             INSERT INTO sale (
@@ -424,10 +424,10 @@ class Database extends PDO
             'seller', 'owner', 'commission', 'total_price'
         ];
 
-        $this->insert_checkout_helper($data, $query, $params);
+        $this->insertCheckoutHelper($data, $query, $params);
     }
 
-    public function insert_new_shipment($data)
+    public function insertNewShipment($data)
     {
         $query = '
             INSERT INTO shipment (
@@ -447,12 +447,12 @@ class Database extends PDO
             'apt_number', 'country', 'city', 'zip'
         ];
 
-        $this->insert_checkout_helper($data, $query, $params);
+        $this->insertCheckoutHelper($data, $query, $params);
     }
 
     // ***** HELPER ***** //
 
-    private function alter_user_helper($action, $data, $query)
+    private function alterUserHelper($action, $data, $query)
     {
         $statement = self::$db->prepare($query);
 
@@ -471,7 +471,7 @@ class Database extends PDO
         $statement->execute();
     }
 
-    private function alter_car_helper($action, $data, $query, $params)
+    private function alterCarHelper($action, $data, $query, $params)
     {
         $statement = self::$db->prepare($query);
 
@@ -490,7 +490,7 @@ class Database extends PDO
         $statement->execute();
     }
 
-    private function insert_checkout_helper($data, $query, $params)
+    private function insertCheckoutHelper($data, $query, $params)
     {
         // Prepare query.
         $statement = self::$db->prepare($query);
@@ -513,7 +513,7 @@ class Database extends PDO
 
     // ***** DYNAMIC ***** //
 
-    public function get_max_value($column, $table)
+    public function getMaxValue($column, $table)
     {
         $query = "SELECT MAX({$column}) AS max FROM {$table};";
         $statement = self::$db->query($query);
@@ -525,7 +525,7 @@ class Database extends PDO
         return null;
     }
 
-    public function get_last_added_item_id($table)
+    public function getLastAddedItemID($table)
     {
         $query = "SELECT MAX({$table}_id) AS id FROM {$table};";
         $statement = self::$db->query($query);
@@ -537,9 +537,9 @@ class Database extends PDO
         return 0;
     }
 
-    public function get_value_for_user_type($column, $table, $user_id)
+    public function getValueForUserType($column, $table, $userID)
     {
-        $query = "SELECT {$column} FROM {$table} WHERE {$table}_id = {$user_id};";
+        $query = "SELECT {$column} FROM {$table} WHERE {$table}_id = {$userID};";
         $statement = self::$db->query($query);
 
         if ($statement->execute()) {
@@ -549,12 +549,12 @@ class Database extends PDO
         return null;
     }
 
-    public function update_value_for_user_type($column, $table, $value, $user_id)
+    public function updateValueForUserType($column, $table, $value, $userID)
     {
         $query = "
             UPDATE {$table} 
             SET {$column} = :{$column} 
-            WHERE user_id = {$user_id};
+            WHERE user_id = {$userID};
         ";
 
         $statement = self::$db->prepare($query);
@@ -562,7 +562,7 @@ class Database extends PDO
         $statement->execute();
     }
 
-    public function update_item_image($table, $column, $image, $id)
+    public function updateItemImage($table, $column, $image, $id)
     {
         $query = "
             UPDATE {$table} SET 
@@ -576,7 +576,7 @@ class Database extends PDO
         $statement->execute();
     }
 
-    public function delete_item($table, $id)
+    public function deleteItem($table, $id)
     {
         $query = "DELETE FROM {$table} WHERE {$table}_id = {$id};";
         $statement = self::$db->query($query);
