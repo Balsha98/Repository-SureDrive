@@ -1,17 +1,17 @@
 <?php
 
-require_once '../assets/models/Database.php';
-$database = Database::get_instance();
+require_once '../assets/class/Database.php';
+$database = Database::getInstance();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_POST['image'])) {
-        ['img_edit_id' => $item_id, 'img_edit_type' => $item_type] = $_POST;
+        ['img_edit_id' => $itemID, 'img_edit_type' => $itemType] = $_POST;
         $image = file_get_contents($_FILES['image']['tmp_name']);
 
-        if ($item_type === 'car') {
-            $database->update_item_image('description', $item_type, $image, $item_id);
-        } else if ($item_type === 'user') {
-            $database->update_item_image($item_type, $item_type, $image, $item_id);
+        if ($itemType === 'car') {
+            $database->updateItemImage('description', $itemType, $image, $itemID);
+        } else if ($itemType === 'user') {
+            $database->updateItemImage($itemType, $itemType, $image, $itemID);
         }
     }
 }
