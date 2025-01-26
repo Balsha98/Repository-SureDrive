@@ -1,5 +1,5 @@
-import { divToTop } from "./general.js";
-import { handleRequest } from "./request.js";
+import { divToTop } from "../general.js";
+import { handleRequest } from "../request.js";
 
 // ***** DOM ELEMENTS ***** //
 const popupCloseBtns = $(".btn-close-popup");

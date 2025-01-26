@@ -2,7 +2,7 @@
             <aside class="aside-filter-options">
                 <form 
                     class="form form-filter-options"
-                    action="<?php echo DOMAIN; ?>/api/filter.php" 
+                    action="<?php echo SERVER; ?>/api/filter.php" 
                     method="POST"
                 >
                     <!-- FILTER OPTIONS HEADER -->

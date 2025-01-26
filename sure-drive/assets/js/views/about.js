@@ -1,4 +1,4 @@
-import { divToTop } from "./general.js";
+import { divToTop } from "../general.js";
 
 // ***** DOM ELEMENTS ***** //
 const heroSection = $(".section-hero");

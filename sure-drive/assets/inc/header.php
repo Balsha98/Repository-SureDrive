@@ -40,7 +40,7 @@
     <!-- PAGE SIDEBAR -->
     <div class="page-sidebar">
         <header class="sidebar-header">
-            <h2 class="heading-secondary">Hello, <?php echo $first_name; ?>.</h2>
+            <h2 class="heading-secondary">Hello, <?php echo $firstName; ?>.</h2>
             <button class="icon-btn navbar-icon-btn">
                 <ion-icon class="sidebar-icon" name="close-outline"></ion-icon>
             </button>

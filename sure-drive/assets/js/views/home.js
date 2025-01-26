@@ -1,5 +1,5 @@
-import { divToTop, openPage } from "./general.js";
-import { handleRequest } from "./request.js";
+import { divToTop, openPage } from "../general.js";
+import { handleRequest } from "../request.js";
 
 // ***** DOM ELEMENTS ***** //
 const sectionHero = $(".section-hero");

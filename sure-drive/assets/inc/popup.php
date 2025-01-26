@@ -1,5 +1,5 @@
-    <?php if ($role_id !== 2) { ?>
-    <?php if ($role_id === 1) { ?>
+    <?php if ($roleID !== 2) { ?>
+    <?php if ($roleID === 1) { ?>
     <!-- MODIFY USER POPUP -->
     <div class="div-popup popup-modify-user">
         <button class="btn-close-popup">
@@ -515,7 +515,7 @@
         </div>
     </div>
 
-    <?php if ($role_id === 3) { ?>
+    <?php if ($roleID === 3) { ?>
     <!-- MODIFY COMMISSION POPUP -->
     <div class="div-popup popup-modify-commission">
         <div>
@@ -539,7 +539,7 @@
                     <button class="btn btn-primary btn-commission-submit" type="submit">Edit</button>
                 </div>
                 <div class="div-hidden-inputs-container">
-                    <input id="commission_edit_id" type="hidden" name="id" value="<?php echo $user_id; ?>">
+                    <input id="commission_edit_id" type="hidden" name="id" value="<?php echo $userID; ?>">
                 </div>
             </form>
         </div>

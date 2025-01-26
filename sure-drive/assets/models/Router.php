@@ -35,7 +35,7 @@ class Router
         ]
     ];
 
-    static function renderPage($url)
+    public static function renderPage($url)
     {
         // Require additional scripts.
         require_once 'assets/models/Session.php';
@@ -66,19 +66,19 @@ class Router
         $html = "assets/views/{$page}.php";
         if (file_exists($html)) {
             $database = Database::get_instance();
-            $page_data = self::$mainViewsData[$page];
-            $file = $page_data['file_name'];
-            $title = $page_data['title'];
+            $pageData = self::$mainViewsData[$page];
+            $file = $pageData['file_name'];
+            $title = $pageData['title'];
 
             $username = 'Guest';
-            $first_name = $username;
+            $firstName = $username;
             if (Session::is_set('logged_in')) {
                 $username = Session::get_session_var('username');
-                $user_role_id = Session::get_session_var('role_id');
+                $userRoleID = Session::get_session_var('role_id');
 
-                $username_parts = explode(' ', $username);
-                if (is_array($username_parts)) {
-                    $first_name = $username_parts[0];
+                $usernameParts = explode(' ', $username);
+                if (is_array($usernameParts)) {
+                    [$firstName] = $usernameParts;
                 }
             }
 
