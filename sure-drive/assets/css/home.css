@@ -68,11 +68,11 @@
 
 .section-hero-header {
     position: relative;
-    display: flex;
+    display: inherit;
     flex-direction: column;
     align-items: center;
     gap: 2.4rem;
-    width: 60%;
+    width: 80rem;
     padding: 4.8rem 0 6.4rem;
     background-color: var(--opaque-gray-shade-md);
     box-shadow: 0 2.4rem 4.8rem var(--opaque-gray-shade-sm);

@@ -13,7 +13,7 @@
             foreach ($cars as $i => $car) {
                 if ($i < 3) {
                     $heroID = $i + 1;
-                    $translate = $i * 100;
+                    $x = $i * 100;
 
                     $carID = $car['car_id'];
                     $name = "{$car['make']} {$car['model']}";
@@ -28,7 +28,7 @@
 
                     echo "
                         <div 
-                            class='div-hero-img-container' 
+                            class='div-hero-img-container translate-x-{$x}' 
                             data-hero-car='{$heroID}' 
                             data-name='{$name}' 
                             data-year='{$year}' 

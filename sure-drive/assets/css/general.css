@@ -241,6 +241,19 @@ small {
     transform: translateY(0) !important;
 }
 
+/* TRANSFORM */
+.translate-x-0 {
+    transform: translateX(0);
+}
+
+.translate-x-100 {
+    transform: translateX(100%);
+}
+
+.translate-x-200 {
+    transform: translateX(200%);
+}
+
 /* PAGE HEADER */
 .page-header {
     display: flex;
