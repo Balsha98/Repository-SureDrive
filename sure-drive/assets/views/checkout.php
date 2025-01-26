@@ -1,35 +1,35 @@
 <?php
 if (!Session::is_set('logged_in')) {
-    Redirect::redirect_to('login');
+    Redirect::redirectTo('login');
 }
 
-$database = Database::get_instance();
+$database = Database::getInstance();
 
 // Get car details.
-$car_id = $_POST['checkout_car_id'];
-$car_data = $database->get_car_details_by_id($car_id);
-$image = Image::render_image('car', $car_data['car_image']);
-$make = $car_data['make'];
-$model = $car_data['model'];
-$car_name = "{$make} {$model}";
-$seller_id = $car_data['seller_id'];
-$owner_id = $car_data['owner_id'];
-$mileage = $car_data['mileage'];
-$year = $car_data['year'];
-$shift = $car_data['shift'];
+$carID = $_POST['checkout_car_id'];
+$carData = $database->getCarDetailsByID($carID);
+$image = Image::renderImage('car', $carData['car_image']);
+$make = $carData['make'];
+$model = $carData['model'];
+$carName = "{$make} {$model}";
+$sellerID = $carData['seller_id'];
+$ownerID = $carData['owner_id'];
+$mileage = $carData['mileage'];
+$year = $carData['year'];
+$shift = $carData['shift'];
 
 // Formatting prices.
-$original_price = $car_data['original_price'];
-$original_formatted = Format::format_number($original_price, 2);
-$final_price = $car_data['final_price'];
-$final_formatted = Format::format_number($final_price, 2);
+$originalPrice = $carData['original_price'];
+$originalFormatted = Format::formatNumber($originalPrice, 2);
+$finalPrice = $carData['final_price'];
+$finalFormatted = Format::formatNumber($finalPrice, 2);
 
 // Get receipt prices.
-$discount = Format::format_number($original_price - $final_price, 2);
-$tax = $final_price * 0.05;
-$tax_formatted = Format::format_number($tax, 2);
-$total = $final_price + $tax;
-$total_formatted = Format::format_number($total, 2);
+$discount = Format::formatNumber($originalPrice - $finalPrice, 2);
+$tax = $finalPrice * 0.05;
+$taxFormatted = Format::formatNumber($tax, 2);
+$total = $finalPrice + $tax;
+$totalFormatted = Format::formatNumber($total, 2);
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -37,14 +37,12 @@ $total_formatted = Format::format_number($total, 2);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="<?php echo DOMAIN; ?>/assets/media/car-rental-icon.ico">
-    <link rel="stylesheet" href="<?php echo DOMAIN; ?>/assets/css/general.css?ts=<?php echo $timestamp; ?>">
-    <link rel="stylesheet" href="<?php echo DOMAIN; ?>/assets/css/checkout.css?ts=<?php echo $timestamp; ?>">
-    <script src="<?php echo DOMAIN; ?>/assets/js/jQuery.js" defer></script>
-    <script type="module" src="<?php echo DOMAIN; ?>/assets/js/cookie.js" defer></script>
-    <script type="module" src="<?php echo DOMAIN; ?>/assets/js/general.js" defer></script>
-    <script type="module" src="<?php echo DOMAIN; ?>/assets/js/request.js" defer></script>
-    <script type="module" src="<?php echo DOMAIN; ?>/assets/js/checkout.js" defer></script>
+    <link rel="icon" href="<?php echo SERVER; ?>/assets/media/car-rental-icon.ico">
+    <link rel="stylesheet" href="<?php echo SERVER; ?>/assets/css/general.css?ts=<?php echo $timestamp; ?>">
+    <link rel="stylesheet" href="<?php echo SERVER; ?>/assets/css/checkout.css?ts=<?php echo $timestamp; ?>">
+    <script src="<?php echo SERVER; ?>/assets/js/lib/jQuery.js" defer></script>
+    <script type="module" src="<?php echo SERVER; ?>/assets/js/helper/general.js" defer></script>
+    <script type="module" src="<?php echo SERVER; ?>/assets/js/views/checkout.js" defer></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
     <title>SureDrive | Checkout</title>
 </head>
@@ -54,7 +52,7 @@ $total_formatted = Format::format_number($total, 2);
     <header class="page-header">
         <div 
             class="div-header-logo-container logo-container" 
-            data-href="<?php echo DOMAIN; ?>/home" 
+            data-href="<?php echo SERVER; ?>/home" 
             data-target="_self"
         >
             <ion-icon class="logo-icon" name="car-sport"></ion-icon>
@@ -72,7 +70,7 @@ $total_formatted = Format::format_number($total, 2);
         <section class="section-form-process">
             <form 
                 class="form form-process" 
-                action="<?php echo DOMAIN; ?>/api/checkout.php" 
+                action="<?php echo SERVER; ?>/api/checkout.php" 
                 method="POST"
             >
                 <!-- SHIPPING ADDRESS FORM -->
@@ -217,7 +215,7 @@ $total_formatted = Format::format_number($total, 2);
                             </button>
                             <button 
                                 class="btn btn-primary btn-confirm-payment" 
-                                data-href="<?php echo DOMAIN . '/home'; ?>" 
+                                data-href="<?php echo SERVER . '/home'; ?>" 
                                 data-target="_self" 
                                 type="submit"
                             >
@@ -228,17 +226,17 @@ $total_formatted = Format::format_number($total, 2);
                 </div>
                 <!-- HIDDEN INPUTS CONTAINER -->
                 <div class="div-hidden-inputs-container">
-                    <input id="car_id" type="hidden" name="car_id" value="<?php echo $car_id; ?>">
-                    <input id="seller_id" type="hidden" name="seller_id" value="<?php echo $seller_id; ?>">
-                    <input id="owner_id" type="hidden" name="owner_id" value="<?php echo $owner_id; ?>">
-                    <input id="car_name" type="hidden" name="car_name" value="<?php echo $car_name; ?>">
+                    <input id="car_id" type="hidden" name="car_id" value="<?php echo $carID; ?>">
+                    <input id="seller_id" type="hidden" name="seller_id" value="<?php echo $sellerID; ?>">
+                    <input id="owner_id" type="hidden" name="owner_id" value="<?php echo $ownerID; ?>">
+                    <input id="car_name" type="hidden" name="car_name" value="<?php echo $carName; ?>">
                     <input id="make" type="hidden" name="make" value="<?php echo $make; ?>">
                     <input id="model" type="hidden" name="model" value="<?php echo $model; ?>">
                     <input id="year" type="hidden" name="year" value="<?php echo $year; ?>">
                     <input id="car_image" type="hidden" name="car_image" value="<?php echo $image; ?>">
                     <input id="mileage" type="hidden" name="mileage" value="<?php echo $mileage; ?>">
                     <input id="shift" type="hidden" name="shift" value="<?php echo $shift; ?>">
-                    <input id="final_price" type="hidden" name="final_price" value="<?php echo $final_price; ?>">
+                    <input id="final_price" type="hidden" name="final_price" value="<?php echo $finalPrice; ?>">
                     <input id="total_price" type="hidden" name="total_price" value="<?php echo $total; ?>">
                 </div>
             </form>
@@ -250,7 +248,7 @@ $total_formatted = Format::format_number($total, 2);
                     <img src="data:image/png;base64,<?php echo $image; ?>" alt="Car Image">
                 </div>
                 <div class="div-car-info-container">
-                    <h4 class="heading-quaternary"><?php echo $car_name; ?></h4>
+                    <h4 class="heading-quaternary"><?php echo $carName; ?></h4>
                     <ul class='car-overview-list'>
                         <li class='car-overview-list-item'>
                             <span class='span-overview-dot'>&nbsp;</span>
@@ -273,10 +271,10 @@ $total_formatted = Format::format_number($total, 2);
                     </ul>
                     <div class='div-price-container grid-2-columns'>
                         <span class='span-previous-price'>
-                            <small>&dollar;</small><?php echo $original_formatted; ?>
+                            <small>&dollar;</small><?php echo $originalFormatted; ?>
                         </span>
                         <span class='span-current-price'>
-                            <small>&dollar;</small><?php echo $final_formatted; ?>
+                            <small>&dollar;</small><?php echo $finalFormatted; ?>
                         </span>
                     </div>
                 </div>
@@ -293,13 +291,13 @@ $total_formatted = Format::format_number($total, 2);
                     </li>
                     <li class="price-overview-list-item">
                         <p>Est. Tax:</p>
-                        <span class="span-tax">+&dollar;<?php echo $tax_formatted; ?></span>
+                        <span class="span-tax">+&dollar;<?php echo $taxFormatted; ?></span>
                     </li>
                 </ul>
                 <div class="div-total-price-container">
                     <p>Total:</p>
                     <span>
-                        <small>&dollar;</small><?php echo $total_formatted; ?>
+                        <small>&dollar;</small><?php echo $totalFormatted; ?>
                     </span>
                 </div>
             </div>

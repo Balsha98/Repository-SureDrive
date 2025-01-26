@@ -100,15 +100,15 @@ $sellerPhone = $carData['user_phone'];
                 for ($i = 0; $i < count($data); $i++) {
                     $value = $data[$i];
                     if ($labels[$i] === 'Mileage') {
-                        $value = Format::format_number($data[$i], 0) . '<small>km</small>';
+                        $value = Format::formatNumber($data[$i], 0) . '<small>km</small>';
                     } else if ($labels[$i] === 'Horse Power') {
-                        $value = Format::format_number($data[$i], 0) . '<small>hp</small>';
+                        $value = Format::formatNumber($data[$i], 0) . '<small>hp</small>';
                     }
 
                     echo "
                         <li class='car-features-list-item'>
                             <figure class='figure-feature'>
-                                <img src='" . DOMAIN . "/assets/media/{$icons[$i]}-icon.png' alt='Feature'>
+                                <img src='" . SERVER . "/assets/media/{$icons[$i]}-icon.png' alt='Feature'>
                                 <figcaption>{$value}</figcaption>
                             </figure>
                             <span>{$labels[$i]}</span>
@@ -141,17 +141,17 @@ $sellerPhone = $carData['user_phone'];
                     ];
 
                     foreach ($data as $label => $value) {
-                        $class_name = strtolower(implode('-', explode(' ', $label)));
+                        $className = strtolower(implode('-', explode(' ', $label)));
 
                         $attr = '';
                         if ($label === 'Mileage') {
-                            $value = sprintf('%s<small>km</small>', Format::format_number($value, 0));
+                            $value = sprintf('%s<small>km</small>', Format::formatNumber($value, 0));
                         } else if ($label === 'Horse Power') {
-                            $value = sprintf('%s<small>hp</small>', Format::format_number($value, 0));
+                            $value = sprintf('%s<small>hp</small>', Format::formatNumber($value, 0));
                         } else if ($label === 'Color') {
                             $attr = "data-color='{$value}'";
                         } else if (str_contains($label, 'Price')) {
-                            $value = sprintf('<small>$</small>%s', Format::format_number($value, 2));
+                            $value = sprintf('<small>$</small>%s', Format::formatNumber($value, 2));
                         } else if ($label === 'Added On') {
                             $value = date_format(date_create($value), 'F jS, Y');
                         }
@@ -159,7 +159,7 @@ $sellerPhone = $carData['user_phone'];
                         echo "
                             <li class='car-description-list-item'>
                                 <span class='span-list-item-dot'>&nbsp;</span>
-                                <p class='{$class_name}'>
+                                <p class='{$className}'>
                                     <strong>{$label}</strong> &mdash; <span {$attr}>{$value}</span>
                                 </p>
                             </li>
@@ -172,8 +172,8 @@ $sellerPhone = $carData['user_phone'];
                 <div class="div-sm-car-img-container">
                     <img src="data:image/png;base64,<?php echo $carImage; ?>" alt="Car Image">
                 </div>
-                <?php if (!isset($user_role_id) || $user_role_id === 2) { ?>
-                <form action="<?php echo DOMAIN; ?>/checkout" method="POST">
+                <?php if (!isset($userRoleID) || $userRoleID === 2) { ?>
+                <form action="<?php echo SERVER; ?>/checkout" method="POST">
                     <input id="checkout_car_id" type="hidden" name="checkout_car_id" value="<?php echo $carID; ?>">
                     <button class="btn btn-primary">Checkout</button>
                 </form>

@@ -11,13 +11,13 @@
                     </p>
                 </header>
                 <div class="div-grid-btn-container grid-2-columns">
-                    <a class="btn btn-primary" href="<?php echo DOMAIN; ?>/home#section-cars">View Cars</a>
+                    <a class="btn btn-primary" href="<?php echo SERVER; ?>/home#section-cars">View Cars</a>
                     <a class="btn btn-secondary" href="#purchase-process">Explore</a>
                 </div>
             </div>
             <!-- HERO LOGO -->
             <div class="section-hero-logo">
-                <img src="<?php echo DOMAIN; ?>/assets/media/about-thumbs-up.png" alt="Hero Image">
+                <img src="<?php echo SERVER; ?>/assets/media/about-thumbs-up.png" alt="Hero Image">
             </div>
             <!-- HERO BLUR OVERLAY -->
             <div class="blur-overlay">&nbsp;</div>
@@ -29,19 +29,19 @@
             </header>
             <ul class="partners-list">
                 <li class="partners-list-item">
-                    <img src="<?php echo DOMAIN; ?>/assets/media/mercedes-logo.png" alt="Logo">
+                    <img src="<?php echo SERVER; ?>/assets/media/mercedes-logo.png" alt="Logo">
                 </li>
                 <li class="partners-list-item">
-                    <img src="<?php echo DOMAIN; ?>/assets/media/bmw-logo.png" alt="Logo">
+                    <img src="<?php echo SERVER; ?>/assets/media/bmw-logo.png" alt="Logo">
                 </li>
                 <li class="partners-list-item">
-                    <img src="<?php echo DOMAIN; ?>/assets/media/audi-logo.png" alt="Logo">
+                    <img src="<?php echo SERVER; ?>/assets/media/audi-logo.png" alt="Logo">
                 </li>
                 <li class="partners-list-item">
-                    <img src="<?php echo DOMAIN; ?>/assets/media/porsche-logo.png" alt="Logo">
+                    <img src="<?php echo SERVER; ?>/assets/media/porsche-logo.png" alt="Logo">
                 </li>
                 <li class="partners-list-item">
-                    <img src="<?php echo DOMAIN; ?>/assets/media/lamborghini-logo.png" alt="Logo">
+                    <img src="<?php echo SERVER; ?>/assets/media/lamborghini-logo.png" alt="Logo">
                 </li>
             </ul>
         </section>
@@ -62,10 +62,10 @@
                             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga nesciunt explicabo eos sequi error laboriosam, aliquid est voluptates tempore, voluptas quod cupiditate cumque quo reiciendis corporis tenetur a. Ducimus, atque?
                         </p>
                     </div>
-                    <img class="step-img img-shadow-right" src="<?php echo DOMAIN; ?>/assets/media/dealership-welcome.png" alt="">
+                    <img class="step-img img-shadow-right" src="<?php echo SERVER; ?>/assets/media/dealership-welcome.png" alt="">
                 </li>
                 <li class="process-steps-list-item grid-2-columns">
-                    <img class="step-img img-shadow-left" src="<?php echo DOMAIN; ?>/assets/media/dealership-details.png" alt="">
+                    <img class="step-img img-shadow-left" src="<?php echo SERVER; ?>/assets/media/dealership-details.png" alt="">
                     <div class="div-step-text-container">
                         <header class="step-text-header">
                             <span>02</span>
@@ -86,7 +86,7 @@
                             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga nesciunt explicabo eos sequi error laboriosam, aliquid est voluptates tempore, voluptas quod cupiditate cumque quo reiciendis corporis tenetur a. Ducimus, atque?
                         </p>
                     </div>
-                    <img class="step-img img-shadow-right" src="<?php echo DOMAIN; ?>/assets/media/dealership-purchase.png" alt="">
+                    <img class="step-img img-shadow-right" src="<?php echo SERVER; ?>/assets/media/dealership-purchase.png" alt="">
                 </li>
             </ul>
         </section>
