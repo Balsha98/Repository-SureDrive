@@ -14,7 +14,7 @@
             <div class="div-sub-form-container">
                 <form 
                     class="form form-subscription" 
-                    action="<?php echo DOMAIN; ?>/assets/process/newsletter.php" 
+                    action="<?php echo SERVER; ?>/assets/process/newsletter.php" 
                     method="POST"
                 >
                     <div class="div-sub-input-container">
@@ -38,7 +38,7 @@
             <header class="footer-info-header">
                 <div 
                     class="div-footer-logo-container logo-container" 
-                    data-href="<?php echo DOMAIN; ?>/home" 
+                    data-href="<?php echo SERVER; ?>/home" 
                     data-target="_self"
                 >
                     <ion-icon class="logo-icon" name="car-sport"></ion-icon>
@@ -47,9 +47,9 @@
                 <?php if ($url[0] !== 'checkout') { ?>
                 <a 
                     class="btn btn-primary" 
-                    href="<?php echo DOMAIN; ?>/<?php echo $action_href; ?>"
+                    href="<?php echo SERVER; ?>/<?php echo $actionHref; ?>"
                 >
-                    <?php echo $action_name; ?>
+                    <?php echo $actionName; ?>
                 </a>
                 <?php } ?>
             </header>
@@ -63,7 +63,7 @@
                             <ion-icon class="<?php echo $title === 'Home' ? 'active-footer-link' : ''; ?>" name="home"></ion-icon>
                             <a 
                                 class="<?php echo $title === 'Home' ? 'active-footer-link' : ''; ?>" 
-                                href="<?php echo DOMAIN; ?>/home"
+                                href="<?php echo SERVER; ?>/home"
                             >
                                 Home
                             </a>
@@ -72,7 +72,7 @@
                             <ion-icon class="<?php echo $title === 'Details' ? 'active-footer-link' : ''; ?>" name="car-sport"></ion-icon>
                             <a 
                                 class="<?php echo $title === 'Details' ? 'active-footer-link' : ''; ?>" 
-                                href="<?php echo DOMAIN; ?>/details"
+                                href="<?php echo SERVER; ?>/details"
                             >
                                 Car Details
                             </a>
@@ -81,7 +81,7 @@
                             <ion-icon class="<?php echo $title === 'About' ? 'active-footer-link' : ''; ?>" name="information-circle"></ion-icon>
                             <a 
                                 class="<?php echo $title === 'About' ? 'active-footer-link' : ''; ?>" 
-                                href="<?php echo DOMAIN; ?>/about"
+                                href="<?php echo SERVER; ?>/about"
                             >
                                 About SureDrive
                             </a>
@@ -90,7 +90,7 @@
                             <ion-icon class="<?php echo $title === 'Profile' ? 'active-footer-link' : ''; ?>" name="person"></ion-icon>
                             <a 
                                 class="<?php echo $title === 'Profile' ? 'active-footer-link' : ''; ?>" 
-                                href="<?php echo DOMAIN; ?>/profile"
+                                href="<?php echo SERVER; ?>/profile"
                             >
                                 User Profile
                             </a>
