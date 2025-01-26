@@ -1,8 +1,8 @@
 <?php
 
 // End current session.
-Session::unset_session_vars();
-Session::end_session();
+Session::unsetSessionVars();
+Session::end();
 
 // Redirect back to login.
-Redirect::redirect_to('home');
+Redirect::redirectTo('home');

@@ -1,26 +1,26 @@
 <?php
-$car_id = 0;
+$carID = 0;
 if (isset($_COOKIE['last_viewed_car'])) {
-    $car_id = (int) $_COOKIE['last_viewed_car'];
+    $carID = (int) $_COOKIE['last_viewed_car'];
 } else if (!is_numeric($url[1])) {
-    Redirect::redirect_to('/home');
+    Redirect::redirectTo('/home');
 } else {
-    $car_id = (int) $url[1];
+    $carID = (int) $url[1];
 }
 
 // Get car data.
-$car_data = $database->get_car_details_by_id($car_id);
-$car_name = "{$car_data['make']} {$car_data['model']}";
-$car_image = Image::render_image('car', $car_data['car_image']);
+$carData = $database->getCarDetailsByID($carID);
+$carName = "{$carData['make']} {$carData['model']}";
+$carImage = Image::renderImage('car', $carData['car_image']);
 
 // Get seller data.
-$seller = $car_data['username'];
-$seller_image = Image::render_image('user', $car_data['user_image']);
-$location_parts = explode(',', $car_data['location']);
-$seller_country = trim($location_parts[1]);
-$seller_city = trim($location_parts[0]);
-$seller_email = $car_data['user_email'];
-$seller_phone = $car_data['user_phone'];
+$seller = $carData['username'];
+$sellerImage = Image::renderImage('user', $carData['user_image']);
+$locationParts = explode(',', $carData['location']);
+$sellerCountry = trim($locationParts[1]);
+$sellerCity = trim($locationParts[0]);
+$sellerEmail = $carData['user_email'];
+$sellerPhone = $carData['user_phone'];
 ?>
 
     <!-- MAIN CONTAINER -->
@@ -28,10 +28,10 @@ $seller_phone = $car_data['user_phone'];
         <section class="section-car-user-details">
             <div class="div-car-details-container">
                 <header class="car-name-header">
-                    <h3 class="heading-tertiary"><?php echo $car_name; ?></h3>
+                    <h3 class="heading-tertiary"><?php echo $carName; ?></h3>
                 </header>
                 <div class="div-lg-car-img-container">
-                    <img src="data:image/png;base64,<?php echo $car_image; ?>" alt="Car Image">
+                    <img src="data:image/png;base64,<?php echo $carImage; ?>" alt="Car Image">
                 </div>
             </div>
             <div class="div-user-btn-container">
@@ -47,7 +47,7 @@ $seller_phone = $car_data['user_phone'];
                 </div>
                 <header class="user-details-header">
                     <div class="div-user-img-container">
-                        <img src="data:image/png;base64,<?php echo $seller_image; ?>" alt="User Image">
+                        <img src="data:image/png;base64,<?php echo $sellerImage; ?>" alt="User Image">
                     </div>
                     <div class="div-user-details">
                         <h3 class="heading-tertiary"><?php echo $seller; ?></h3>
@@ -65,22 +65,22 @@ $seller_phone = $car_data['user_phone'];
                         <li class="contact-details-list-item">
                             <ion-icon name="location"></ion-icon>
                             <div class="div-location-container">
-                                <span><?php echo $seller_country; ?></span>
-                                <a href="https://www.google.com/maps/place/<?php echo $seller_city; ?>" target="_blank">
-                                    <?php echo $seller_city; ?>
+                                <span><?php echo $sellerCountry; ?></span>
+                                <a href="https://www.google.com/maps/place/<?php echo $sellerCity; ?>" target="_blank">
+                                    <?php echo $sellerCity; ?>
                                 </a>
                             </div>
                         </li>
                         <li class="contact-details-list-item">
                             <ion-icon name="mail"></ion-icon>
-                            <a href="mailto:<?php echo $seller_email; ?>">
-                                <?php echo $seller_email; ?>
+                            <a href="mailto:<?php echo $sellerEmail; ?>">
+                                <?php echo $sellerEmail; ?>
                             </a>
                         </li>
                         <li class="contact-details-list-item">
                             <ion-icon name="call"></ion-icon>
-                            <a href="tel:<?php echo $seller_phone; ?>">
-                                <?php echo $seller_phone; ?>
+                            <a href="tel:<?php echo $sellerPhone; ?>">
+                                <?php echo $sellerPhone; ?>
                             </a>
                         </li>
                     </ul>
@@ -94,7 +94,7 @@ $seller_phone = $car_data['user_phone'];
             <ul class="car-features-list">
                 <?php
                 $icons = ['mileage', 'engine', 'fuel', 'shift', 'calendar'];
-                $data = [$car_data['mileage'], $car_data['horse_power'], $car_data['fuel'], $car_data['shift'], $car_data['year']];
+                $data = [$carData['mileage'], $carData['horse_power'], $carData['fuel'], $carData['shift'], $carData['year']];
                 $labels = ['Mileage', 'Horse Power', 'Fuel', 'Shift', 'Production'];
 
                 for ($i = 0; $i < count($data); $i++) {
@@ -127,17 +127,17 @@ $seller_phone = $car_data['user_phone'];
                 <ul class="car-description-list">
                     <?php
                     $data = [
-                        'Make' => $car_data['make'],
-                        'Model' => $car_data['model'],
-                        'Year of Production' => $car_data['year'],
-                        'Mileage' => $car_data['mileage'],
-                        'Horse Power' => $car_data['horse_power'],
-                        'Fuel' => $car_data['fuel'],
-                        'Shift' => $car_data['shift'],
-                        'Color' => $car_data['color'],
-                        'Original Price' => $car_data['original_price'],
-                        'Final Price' => $car_data['final_price'],
-                        'Added On' => $car_data['date_added']
+                        'Make' => $carData['make'],
+                        'Model' => $carData['model'],
+                        'Year of Production' => $carData['year'],
+                        'Mileage' => $carData['mileage'],
+                        'Horse Power' => $carData['horse_power'],
+                        'Fuel' => $carData['fuel'],
+                        'Shift' => $carData['shift'],
+                        'Color' => $carData['color'],
+                        'Original Price' => $carData['original_price'],
+                        'Final Price' => $carData['final_price'],
+                        'Added On' => $carData['date_added']
                     ];
 
                     foreach ($data as $label => $value) {
@@ -170,11 +170,11 @@ $seller_phone = $car_data['user_phone'];
             </div>
             <div class="div-description-card-container">
                 <div class="div-sm-car-img-container">
-                    <img src="data:image/png;base64,<?php echo $car_image; ?>" alt="Car Image">
+                    <img src="data:image/png;base64,<?php echo $carImage; ?>" alt="Car Image">
                 </div>
                 <?php if (!isset($user_role_id) || $user_role_id === 2) { ?>
                 <form action="<?php echo DOMAIN; ?>/checkout" method="POST">
-                    <input id="checkout_car_id" type="hidden" name="checkout_car_id" value="<?php echo $car_id; ?>">
+                    <input id="checkout_car_id" type="hidden" name="checkout_car_id" value="<?php echo $carID; ?>">
                     <button class="btn btn-primary">Checkout</button>
                 </form>
                 <?php } ?>

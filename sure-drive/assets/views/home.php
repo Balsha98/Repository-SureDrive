@@ -9,30 +9,30 @@
                 </button>
             </div>
             <?php
-            $cars = $database->get_all_cars();
+            $cars = $database->getAllCars();
             foreach ($cars as $i => $car) {
                 if ($i < 3) {
-                    $hero_id = $i + 1;
+                    $heroID = $i + 1;
                     $translate = $i * 100;
 
-                    $car_id = $car['car_id'];
+                    $carID = $car['car_id'];
                     $name = "{$car['make']} {$car['model']}";
-                    $image = Image::render_image('car', $car['car_image']);
+                    $image = Image::renderImage('car', $car['car_image']);
                     $year = $car['year'];
 
                     if ($i === 0) {
-                        $first_car_id = $car_id;
-                        $first_car_name = $name;
-                        $first_car_year = $year;
+                        $firstCarID = $carID;
+                        $firstCarName = $name;
+                        $firstCarYear = $year;
                     }
 
                     echo "
                         <div 
-                            class='div-hero-img-container translate-{$translate}-x' 
-                            data-hero-car='{$hero_id}' 
+                            class='div-hero-img-container' 
+                            data-hero-car='{$heroID}' 
                             data-name='{$name}' 
                             data-year='{$year}' 
-                            data-id='{$car_id}'
+                            data-id='{$carID}'
                         >
                             <img src='data:image/png;base64,{$image}' alt='Placeholder'>
                         </div>
@@ -45,12 +45,12 @@
             <!-- CAROUSEL INFO CONTAINER -->
             <header class='section-hero-header'>
                 <div class='hero-header-text-container'>
-                    <h2 class='heading-secondary heading-car-name'><?php echo $first_car_name; ?></h2>
-                    <p>Year of Production &mdash; <span class="span-production-year"><?php echo $first_car_year; ?></span></p>
+                    <h2 class='heading-secondary heading-car-name'><?php echo $firstCarName; ?></h2>
+                    <p>Year of Production &mdash; <span class="span-production-year"><?php echo $firstCarYear; ?></span></p>
                 </div>
                 <a 
                     class='btn btn-primary btn-view-details' 
-                    href='<?php echo DOMAIN; ?>/details/<?php echo $first_car_id; ?>'
+                    href='<?php echo SERVER; ?>/details/<?php echo $firstCarID; ?>'
                 >
                     View Details
                 </a>
@@ -107,26 +107,26 @@
                         $mileage = $car['mileage'];
                         $shift = $car['shift'];
                         $year = $car['year'];
-                        $date_added = $car['date_added'];
-                        $image = Image::render_image('car', $car['car_image']);
-                        $original_price = $car['original_price'];
-                        if (is_null($original_price)) {
-                            $original_price = '';
+                        $dateAdded = $car['date_added'];
+                        $image = Image::renderImage('car', $car['car_image']);
+                        $originalPrice = $car['original_price'];
+                        if ($originalPrice === null) {
+                            $originalPrice = '';
                         }
 
-                        $original_formatted = Format::format_number($car['original_price'], 2);
-                        $final_price = $car['final_price'];
-                        $final_formatted = Format::format_number($car['final_price'], 2);
+                        $originalFormatted = Format::formatNumber($car['original_price'], 2);
+                        $finalPrice = $car['final_price'];
+                        $finalFormatted = Format::formatNumber($car['final_price'], 2);
 
                         echo "
                             <div 
                                 class='div-car-card-container' 
-                                data-href='" . DOMAIN . "/details/{$id}' 
+                                data-href='" . SERVER . "/details/{$id}' 
                                 data-target='_self' 
                                 data-car-id='{$id}' 
-                                data-price='{$final_price}' 
+                                data-price='{$finalPrice}' 
                                 data-production='{$year}' 
-                                data-date='{$date_added}'
+                                data-date='{$dateAdded}'
                             >
                                 <div class='div-car-img-container'>
                                     <img src='data:image/jpeg;base64,{$image}' alt='Car Image'>
@@ -155,10 +155,10 @@
                                     </ul>
                                     <div class='div-price-container grid-2-columns'>
                                         <span class='span-previous-price'>
-                                            <small>\$</small>{$original_formatted}
+                                            <small>\$</small>{$originalFormatted}
                                         </span>
                                         <span class='span-current-price'>
-                                            <small>\$</small>{$final_formatted}
+                                            <small>\$</small>{$finalFormatted}
                                         </span>
                                     </div>
                                 </div>

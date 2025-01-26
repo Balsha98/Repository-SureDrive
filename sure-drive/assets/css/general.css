@@ -241,19 +241,6 @@ small {
     transform: translateY(0) !important;
 }
 
-/* TRANSFORM */
-.translate-0-x {
-    transform: translateX(0);
-}
-
-.translate-100-x {
-    transform: translateX(100%);
-}
-
-.translate-200-x {
-    transform: translateX(200%);
-}
-
 /* PAGE HEADER */
 .page-header {
     display: flex;

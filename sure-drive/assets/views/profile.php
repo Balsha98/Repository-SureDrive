@@ -1,22 +1,22 @@
 <?php
 if (!Session::is_set('logged_in')) {
-    Redirect::redirect_to('/login');
+    Redirect::redirectTo('/login');
 }
 
 // User data.
-$user_data = $database->get_user_data($username);
-$user_id = (int) $user_data['user_id'];
-$profile_image = Image::render_image('user', $user_data['user_image']);
-$email = $user_data['user_email'];
-$phone = $user_data['user_phone'];
-$location = $user_data['location'];
+$userData = $database->getUserData($username);
+$userID = (int) $userData['user_id'];
+$profileImage = Image::renderImage('user', $userData['user_image']);
+$email = $userData['user_email'];
+$phone = $userData['user_phone'];
+$location = $userData['location'];
 
 // Role specific data.
-$role_id = (int) $user_data['role_id'];
-$role_name = $user_data['role_name'];
-$user_type = strtolower($role_name);
-if ($role_id === 3) {
-    [$commission] = $database->get_user_type_data($user_type, $user_id);
+$roleID = (int) $userData['role_id'];
+$roleName = $userData['role_name'];
+$userType = strtolower($roleName);
+if ($roleID === 3) {
+    [$commission] = $database->getUserTypeData($userType, $userID);
 }
 
 require_once 'assets/inc/popup.php';
@@ -29,18 +29,18 @@ require_once 'assets/inc/popup.php';
             <!-- USER PROFILE -->
             <div class="div-user-profile-container">
                 <span class="span-profile-user-id">
-                    <small>#</small><?php echo $user_id; ?>
+                    <small>#</small><?php echo $userID; ?>
                 </span>
                 <div class="div-profile-img-container">
                     <div 
                         class="div-edit-btn-icon-container" 
-                        data-img-id="user/<?php echo $user_id; ?>"
+                        data-img-id="user/<?php echo $userID; ?>"
                     >
                         <button class="btn-edit-img">
                             <ion-icon name="pencil"></ion-icon>
                         </button>
                     </div>
-                    <img src="data:image/jpeg;base64,<?php echo $profile_image; ?>" alt="Profile Image">
+                    <img src="data:image/jpeg;base64,<?php echo $profileImage; ?>" alt="Profile Image">
                 </div>
                 <div class="div-user-info-container">
                     <h2 class="heading-secondary"><?php echo $username; ?></h2>
@@ -56,7 +56,7 @@ require_once 'assets/inc/popup.php';
                 </header>
                 <form 
                     class="form" 
-                    action="<?php echo DOMAIN; ?>/api/profile.php" 
+                    action="<?php echo SERVER; ?>/api/profile.php" 
                     method="PUT"
                 >
                     <div class="div-multi-input-containers grid-2-columns">
@@ -95,53 +95,53 @@ require_once 'assets/inc/popup.php';
                         <button class="btn btn-primary btn-save-profile">Save</button>
                     </div>
                     <div class="div-hidden-inputs-container">
-                        <input id="edit_profile_id" type="hidden" name="id" value="<?php echo $user_id; ?>">
+                        <input id="edit_profile_id" type="hidden" name="id" value="<?php echo $userID; ?>">
                     </div>
                 </form>
             </div>
         </section>
         <?php
-        if ($role_id === 1) {
-            $users = $database->get_all_users();
-            $users_label = 'Total Users';
-            $users_icon = 'people';
+        if ($roleID === 1) {
+            $users = $database->getAllUsers();
+            $usersLabel = 'Total Users';
+            $usersIcon = 'people';
 
-            $cars = $database->get_all_cars();
-            $cars_label = 'Total Cars';
+            $cars = $database->getAllCars();
+            $carsLabel = 'Total Cars';
 
-            $sales = $database->get_all_sales();
-            $sales_label = 'Total Sales';
-            $sales_icon = 'pricetag';
+            $sales = $database->getAllSales();
+            $salesLabel = 'Total Sales';
+            $salesIcon = 'pricetag';
         } else {
-            $funds_icon = 'card';
-            if ($role_id === 2) {
-                [$user_type_data] = $database->get_user_type_data($user_type, $user_id);
-                $cars = $database->get_bought_cars_by_user_id($user_id);
+            $fundsIcon = 'card';
+            if ($roleID === 2) {
+                [$userTypeData] = $database->getUserTypeData($userType, $userID);
+                $cars = $database->getBoughtCarsByUserID($userID);
 
-                $funds = Format::format_number($user_type_data['funds_spent'], 2);
-                $funds_label = 'Funds Spent';
-                $cars_label = 'Cars Bought';
+                $funds = Format::formatNumber($userTypeData['funds_spent'], 2);
+                $fundsLabel = 'Funds Spent';
+                $carsLabel = 'Cars Bought';
             } else {
-                [$user_type_data] = $database->get_user_type_data($user_type, $user_id);
-                $cars = $database->get_cars_for_user_id($user_type, $user_id);
+                [$userTypeData] = $database->getUserTypeData($userType, $userID);
+                $cars = $database->getCarsForUserID($userType, $userID);
 
-                $funds = Format::format_number($user_type_data['funds_made'], 2);
-                $funds_label = 'Funds Made';
-                $cars_label = 'Cars ' . ($role_id === 3 ? 'Sold' : 'Owned');
-                $total_cars = $user_type_data[strtolower(implode('_', explode(' ', $cars_label)))];
+                $funds = Format::formatNumber($userTypeData['funds_made'], 2);
+                $fundsLabel = 'Funds Made';
+                $carsLabel = 'Cars ' . ($roleID === 3 ? 'Sold' : 'Owned');
+                $totalCars = $userTypeData[strtolower(implode('_', explode(' ', $carsLabel)))];
             }
 
-            $sales = $database->get_sales_for_user_id($user_id);
+            $sales = $database->getSalesForUserID($userID);
 
-            [$member_date] = explode(' ', $user_data['member_since']);
-            $member_since = date_format(date_create($member_date), 'M jS, Y');
-            $member_label = 'Member Since';
-            $member_icon = 'calendar-clear';
+            [$memberDate] = explode(' ', $userData['member_since']);
+            $memberSince = date_format(date_create($memberDate), 'M jS, Y');
+            $memberLabel = 'Member Since';
+            $memberIcon = 'calendar-clear';
         }
         ?>
         <!-- SECTION DASHBOARD -->
         <section class="section-dashboard">
-            <?php if ($role_id === 3) { ?>
+            <?php if ($roleID === 3) { ?>
             <button class="btn-edit-commission">
                 <ion-icon name="pie-chart"></ion-icon>
                 <span>Commission</span>
@@ -157,42 +157,42 @@ require_once 'assets/inc/popup.php';
                         <span class="span-feature-icon">
                             <ion-icon name="man"></ion-icon>
                         </span>
-                        <p><?php echo $role_name; ?></p>
+                        <p><?php echo $roleName; ?></p>
                     </div>
                     <span>Type of Role</span>
                 </li>
                 <li class="dashboard-features-list-item">
                     <div class="div-dashboard-feature-icon">
                         <span class="span-feature-icon">
-                            <ion-icon name="<?php echo $role_id === 1 ? $users_icon : $funds_icon; ?>"></ion-icon>
+                            <ion-icon name="<?php echo $roleID === 1 ? $usersIcon : $fundsIcon; ?>"></ion-icon>
                         </span>
-                        <p><?php echo $role_id === 1 ? count($users) : "<small>\$</small>{$funds}"; ?></p>
+                        <p><?php echo $roleID === 1 ? count($users) : "<small>\$</small>{$funds}"; ?></p>
                     </div>
-                    <span><?php echo $role_id === 1 ? $users_label : $funds_label; ?></span>
+                    <span><?php echo $roleID === 1 ? $usersLabel : $fundsLabel; ?></span>
                 </li>
                 <li class="dashboard-features-list-item">
                     <div class="div-dashboard-feature-icon">
                         <span class="span-feature-icon">
                             <ion-icon name="car-sport"></ion-icon>
                         </span>
-                        <p><?php echo $role_id < 3 ? count($cars) : $total_cars; ?></p>
+                        <p><?php echo $roleID < 3 ? count($cars) : $totalCars; ?></p>
                     </div>
-                    <span><?php echo $cars_label; ?></span>
+                    <span><?php echo $carsLabel; ?></span>
                 </li>
                 <li class="dashboard-features-list-item">
                     <div class="div-dashboard-feature-icon">
                         <span class="span-feature-icon">
-                            <ion-icon name="<?php echo $role_id === 1 ? $sales_icon : $member_icon; ?>"></ion-icon>
+                            <ion-icon name="<?php echo $roleID === 1 ? $salesIcon : $memberIcon; ?>"></ion-icon>
                         </span>
-                        <p><?php echo $role_id === 1 ? count($sales) : $member_since; ?></p>
+                        <p><?php echo $roleID === 1 ? count($sales) : $memberSince; ?></p>
                     </div>
-                    <span><?php echo $role_id === 1 ? $sales_label : $member_label ?></span>
+                    <span><?php echo $roleID === 1 ? $salesLabel : $memberLabel ?></span>
                 </li>
             </ul>
         </section>
         <!-- SECTION LIST CONTAINER -->
         <section class="section-list-containers">
-            <?php if ($role_id === 1) { ?>
+            <?php if ($roleID === 1) { ?>
             <!-- USERS LIST CONTAINER -->
             <div class="div-list-container users-list-container">
                 <header class="list-container-header users-list-header">
@@ -215,7 +215,7 @@ require_once 'assets/inc/popup.php';
                                     </button>
                                 </div>
                                 <div class="div-user-img-container">
-                                    <img src="<?php echo DOMAIN; ?>/assets/media/user-placeholder.jpeg" alt="Placeholder">
+                                    <img src="<?php echo SERVER; ?>/assets/media/user-placeholder.jpeg" alt="Placeholder">
                                 </div>
                                 <div class="div-user-card-header-text-container">
                                     <h4 class="heading-quaternary">Username</h4>
@@ -255,16 +255,16 @@ require_once 'assets/inc/popup.php';
                         foreach ($users as $user) {
                             $id = (int) $user['user_id'];
 
-                            if ($user_id !== $id) {
-                                $image = Image::render_image('user', $user['user_image']);
+                            if ($userID !== $id) {
+                                $image = Image::renderImage('user', $user['user_image']);
                                 $name = $user['username'];
-                                $user_role_id = $user['role_id'];
-                                $user_role_name = $user['role_name'];
+                                $userRoleID = $user['role_id'];
+                                $userRoleName = $user['role_name'];
 
                                 $location = $user['location'];
-                                $location_parts = explode(',', $location);
-                                $country = trim($location_parts[1]);
-                                $city = trim($location_parts[0]);
+                                $locationParts = explode(',', $location);
+                                $country = trim($locationParts[1]);
+                                $city = trim($locationParts[0]);
 
                                 $email = $user['user_email'];
                                 $phone = $user['user_phone'];
@@ -299,7 +299,7 @@ require_once 'assets/inc/popup.php';
                                             <div class='div-user-card-header-text-container'>
                                                 <h4 class='heading-quaternary'>{$name}</h4>
                                                 <div class='div-verified-container'>
-                                                    <p>{$user_role_name}</p>
+                                                    <p>{$userRoleName}</p>
                                                     <span class='span-verified-icon'>
                                                         <ion-icon name='checkmark-outline'></ion-icon>
                                                     </span>
@@ -336,7 +336,7 @@ require_once 'assets/inc/popup.php';
                                             <input id='edit_user_email_{$id}' type='hidden' value='{$email}'>
                                             <input id='edit_user_phone_{$id}' type='hidden' value='{$phone}'>
                                             <input id='edit_user_location_{$id}' type='hidden' value='{$location}'>
-                                            <input id='edit_user_role_id_{$id}' type='hidden' value='{$user_role_id}'>
+                                            <input id='edit_user_role_id_{$id}' type='hidden' value='{$userRoleID}'>
                                         </div>
                                     </li>
                                 ";
@@ -358,14 +358,14 @@ require_once 'assets/inc/popup.php';
                 </header>
                 <div class="div-scroll-list-container hide-element">
                     <ul class="items-list grid-4-columns">
-                        <?php if ($role_id !== 2) { ?>
+                        <?php if ($roleID !== 2) { ?>
                         <!-- ADD NEW CAR TO THE LIST -->
                         <li class="items-list-item" data-card-id="car/new">
                             <div class="div-add-new">
                                 <span>Add New</span>
                             </div>
                             <div class="div-car-img-container">
-                                <img src="<?php echo DOMAIN; ?>/assets/media/car-placeholder.jpeg" alt="Placeholder">
+                                <img src="<?php echo SERVER; ?>/assets/media/car-placeholder.jpeg" alt="Placeholder">
                             </div>
                             <div class="div-card-text-container">
                                 <div class="div-edit-btns-container">
@@ -406,28 +406,28 @@ require_once 'assets/inc/popup.php';
                         </li>
                         <?php } ?>
                         <?php
-                        if ($role_id !== 2) {
+                        if ($roleID !== 2) {
                             foreach ($cars as $car) {
                                 $id = $car['car_id'];
-                                $car_seller_id = $car['seller_id'];
-                                $car_owner_id = $car['owner_id'];
+                                $carSellerID = $car['seller_id'];
+                                $carOwnerID = $car['owner_id'];
                                 $make = $car['make'];
                                 $model = $car['model'];
                                 $name = "{$make} {$model}";
                                 $year = $car['year'];
                                 $note = $car['note'];
-                                $image = Image::render_image('car', $car['car_image']);
+                                $image = Image::renderImage('car', $car['car_image']);
                                 $mileage = $car['mileage'];
-                                $horse_power = $car['horse_power'];
+                                $horsePower = $car['horse_power'];
                                 $fuel = $car['fuel'];
                                 $color = $car['color'];
                                 $shift = $car['shift'];
 
                                 // Formatting prices.
-                                $original_price = $car['original_price'];
-                                $original_formatted = Format::format_number($original_price, 2);
-                                $final_price = $car['final_price'];
-                                $final_formatted = Format::format_number($final_price, 2);
+                                $originalPrice = $car['original_price'];
+                                $originalFormatted = Format::formatNumber($originalPrice, 2);
+                                $finalPrice = $car['final_price'];
+                                $finalFormatted = Format::formatNumber($finalPrice, 2);
 
                                 echo "
                                     <li class='items-list-item' data-card-id='car/{$id}'>
@@ -456,7 +456,7 @@ require_once 'assets/inc/popup.php';
                                                 <button class='btn-modify'>
                                                     <ion-icon name='pencil'></ion-icon>
                                                 </button>
-                                                <a class='btn-view-details' href='" . DOMAIN . "/details/{$id}'>
+                                                <a class='btn-view-details' href='" . SERVER . "/details/{$id}'>
                                                     <ion-icon name='eye'></ion-icon>
                                                 </a>
                                                 <button class='btn-toggle-car-edit-btns' data-container-id='{$id}'>
@@ -486,29 +486,29 @@ require_once 'assets/inc/popup.php';
                                             </ul>
                                             <div class='div-price-container grid-2-columns'>
                                                 <span class='span-previous-price'>
-                                                    <small>\$</small>{$original_formatted}
+                                                    <small>\$</small>{$originalFormatted}
                                                 </span>
                                                 <span class='span-current-price'>
-                                                    <small>\$</small>{$final_formatted}
+                                                    <small>\$</small>{$finalFormatted}
                                                 </span>
                                             </div>
                                         </div>
                                         <!-- CAR HIDDEN DETAILS -->
                                         <div class='div-hidden-inputs-container'>
                                             <input id='edit_car_id_{$id}' type='hidden' value='{$id}'>
-                                            <input id='edit_car_seller_id_{$id}' type='hidden' value='{$car_seller_id}'>
-                                            <input id='edit_car_owner_id_{$id}' type='hidden' value='{$car_owner_id}'>
+                                            <input id='edit_car_seller_id_{$id}' type='hidden' value='{$carSellerID}'>
+                                            <input id='edit_car_owner_id_{$id}' type='hidden' value='{$carOwnerID}'>
                                             <input id='edit_car_make_{$id}' type='hidden' value='{$make}'>
                                             <input id='edit_car_model_{$id}' type='hidden' value='{$model}'>
                                             <input id='edit_car_year_{$id}' type='hidden' value='{$year}'>
                                             <input id='edit_car_note_{$id}' type='hidden' value='{$note}'>
                                             <input id='edit_car_mileage_{$id}' type='hidden' value='{$mileage}'>
-                                            <input id='edit_car_horse_power_{$id}' type='hidden' value='{$horse_power}'>
+                                            <input id='edit_car_horse_power_{$id}' type='hidden' value='{$horsePower}'>
                                             <input id='edit_car_fuel_{$id}' type='hidden' value='{$fuel}'>
                                             <input id='edit_car_color_{$id}' type='hidden' value='{$color}'>
                                             <input id='edit_car_shift_{$id}' type='hidden' value='{$shift}'>
-                                            <input id='edit_car_original_price_{$id}' type='hidden' value='{$original_price}'>
-                                            <input id='edit_car_final_price_{$id}' type='hidden' value='{$final_price}'>
+                                            <input id='edit_car_original_price_{$id}' type='hidden' value='{$originalPrice}'>
+                                            <input id='edit_car_final_price_{$id}' type='hidden' value='{$finalPrice}'>
                                         </div>
                                     </li>
                                 ";
@@ -520,13 +520,13 @@ require_once 'assets/inc/popup.php';
                                 $model = $car['model'];
                                 $name = "{$make} {$model}";
                                 $year = $car['year'];
-                                $image = Image::render_image('car', $car['car_image']);
+                                $image = Image::renderImage('car', $car['car_image']);
                                 $mileage = $car['mileage'];
                                 $shift = $car['shift'];
 
                                 // Formatting the price.
-                                $final_price = $car['final_price'];
-                                $final_formatted = Format::format_number($final_price, 2);
+                                $finalPrice = $car['final_price'];
+                                $finalFormatted = Format::formatNumber($finalPrice, 2);
 
                                 echo "
                                     <li class='items-list-item'>
@@ -560,7 +560,7 @@ require_once 'assets/inc/popup.php';
                                             </ul>
                                             <div class='div-price-container'>
                                                 <span class='span-current-price'>
-                                                    <small>\$</small>{$final_formatted}
+                                                    <small>\$</small>{$finalFormatted}
                                                 </span>
                                             </div>
                                         </div>
@@ -586,12 +586,12 @@ require_once 'assets/inc/popup.php';
                         <?php
                         foreach ($sales as $sale) {
                             $id = $sale['sale_id'];
-                            $car_name = $sale['car_name'];
+                            $carName = $sale['car_name'];
                             $buyer = $sale['buyer'];
                             $seller = $sale['seller'];
                             $owner = $sale['owner'];
                             $commission = $sale['commission'];
-                            $total_price = Format::format_number($sale['total_price'], 2);
+                            $totalPrice = Format::formatNumber($sale['total_price'], 2);
                             $date = date_format(date_create($sale['date']), 'M jS, Y');
 
                             echo "
@@ -603,7 +603,7 @@ require_once 'assets/inc/popup.php';
                                     <div class='div-sale-details-container'>
                                         <div class='div-flex-container'>
                                             <span>Car:</span>
-                                            <p>{$car_name}</p>
+                                            <p>{$carName}</p>
                                         </div>
                                         <div class='div-flex-container'>
                                             <span>Buyer:</span>
@@ -623,7 +623,7 @@ require_once 'assets/inc/popup.php';
                                         </div>
                                         <div class='div-flex-container'>
                                             <span>Total Price:</span>
-                                            <p><span>\$</span>{$total_price}</p>
+                                            <p><span>\$</span>{$totalPrice}</p>
                                         </div>
                                         <div class='div-flex-container'>
                                             <span>Date:</span>

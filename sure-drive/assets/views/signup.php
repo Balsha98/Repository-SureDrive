@@ -1,6 +1,6 @@
 <?php
 if (Session::is_set('logged_in')) {
-    Redirect::redirect_to('home');
+    Redirect::redirectTo('home');
 }
 ?>
 <!DOCTYPE html>
@@ -12,10 +12,9 @@ if (Session::is_set('logged_in')) {
     <link rel='icon' href='assets/media/car-rental-icon.ico'>
     <link rel='stylesheet' href='assets/css/general.css?ts=<?php echo $timestamp; ?>'>
     <link rel='stylesheet' href='assets/css/signup.css?ts=<?php echo $timestamp; ?>'>
-    <script src='assets/js/jQuery.js' defer></script>
-    <script type="module" src='assets/js/request.js' defer></script>
-    <script type="module" src="assets/js/general.js" defer></script>
-    <script type="module" src='assets/js/signup.js' defer></script>
+    <script src='assets/js/lib/jQuery.js' defer></script>
+    <script type="module" src="assets/js/helper/general.js" defer></script>
+    <script type="module" src='assets/js/views/signup.js' defer></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
     <title>SureDrive | Signup</title>
 </head>
@@ -26,12 +25,12 @@ if (Session::is_set('logged_in')) {
         <!-- SIGNUP CONTAINER HEADER -->
         <header class="signup-container-header">
             <h1 class="heading-primary">Welcome to SureDrive!</h1>
-            <p>Already have an account? <a href="<?php echo DOMAIN; ?>/login">Log in</a>.</p>
+            <p>Already have an account? <a href="<?php echo SERVER; ?>/login">Log in</a>.</p>
         </header>
         <!-- SIGNUP FORM -->
         <form 
             class="form" 
-            action="<?php echo DOMAIN; ?>/api/signup.php" 
+            action="<?php echo SERVER; ?>/api/signup.php" 
             method="POST"
         >
             <div class="div-multi-input-containers grid-2-columns">
@@ -70,10 +69,10 @@ if (Session::is_set('logged_in')) {
                 </div>
             </div>
             <div class="div-grid-btn-container grid-2-columns">
-                <a class="btn btn-secondary" href="<?php echo DOMAIN; ?>/login">Back</a>
+                <a class="btn btn-secondary" href="<?php echo SERVER; ?>/login">Back</a>
                 <button 
                     class="btn btn-primary btn-form-submit" 
-                    data-href="<?php echo DOMAIN; ?>/profile" 
+                    data-href="<?php echo SERVER; ?>/profile" 
                     data-target="_self" 
                     type="submit"
                 >
