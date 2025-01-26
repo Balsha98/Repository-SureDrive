@@ -2,36 +2,36 @@
 
 class Session
 {
-    static function start_session()
+    public static function start()
     {
         if (PHP_SESSION_NONE) {
             session_start();
         }
     }
 
-    static function get_session_var($key)
+    public static function getSessionVar($key)
     {
         return $_SESSION[$key];
     }
 
-    static function set_session_var($key, $value)
+    public static function setSessionVar($key, $value)
     {
         $_SESSION[$key] = $value;
     }
 
-    static function is_set($key)
+    public static function is_set($key)
     {
         return isset($_SESSION[$key]);
     }
 
-    static function unset_session_vars()
+    public static function unsetSessionVars()
     {
         foreach ($_SESSION as $key => $value) {
             unset($_SESSION[$key]);
         }
     }
 
-    static function end_session()
+    public static function end()
     {
         if (PHP_SESSION_ACTIVE) {
             session_destroy();
