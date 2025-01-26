@@ -2,7 +2,7 @@
 
 class Format
 {
-    static function format_number($price, $decimals)
+    public static function formatNumber($price, $decimals)
     {
         return number_format($price, $decimals, '.', ',');
     }

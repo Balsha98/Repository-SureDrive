@@ -2,12 +2,12 @@
 
 class Encoder
 {
-    static function to_json($data)
+    public static function toJSON($data)
     {
         return json_encode($data, JSON_PRETTY_PRINT);
     }
 
-    static function from_json($data)
+    public static function fromJSON($data)
     {
         return json_decode($data, true);
     }
