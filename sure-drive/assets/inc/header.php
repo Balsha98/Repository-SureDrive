@@ -85,9 +85,9 @@
         <div class="div-single-btn-container">
             <a 
                 class="btn btn-primary" 
-                href="<?php echo SERVER; ?>/<?php echo $action_href; ?>"
+                href="<?php echo SERVER; ?>/<?php echo $actionHref; ?>"
             >
-                <?php echo $action_name; ?>
+                <?php echo $actionName; ?>
             </a>
         </div>
     </div>

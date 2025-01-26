@@ -2,21 +2,21 @@
 
 class Router
 {
-    private static $side_pages = [
+    private static $sideViews = [
         'login',
         'signup',
         'checkout',
         'logout'
     ];
 
-    private static $main_pages = [
+    private static $mainViews = [
         'home',
         'details',
         'about',
         'profile'
     ];
 
-    private static $main_pages_data = [
+    private static $mainViewsData = [
         'home' => [
             'file_name' => 'home',
             'title' => 'Home',
@@ -35,7 +35,7 @@ class Router
         ]
     ];
 
-    static function render_page($url)
+    static function renderPage($url)
     {
         // Require additional scripts.
         require_once 'assets/models/Session.php';
@@ -52,8 +52,8 @@ class Router
             $page = 'home';
         } else {
             $url = explode('/', $url);
-            if (!in_array($url[0], self::$main_pages)) {
-                if (in_array($url[0], self::$side_pages)) {
+            if (!in_array($url[0], self::$mainViews)) {
+                if (in_array($url[0], self::$sideViews)) {
                     require_once "assets/views/{$url[0]}.php";
                 }
 
@@ -66,7 +66,7 @@ class Router
         $html = "assets/views/{$page}.php";
         if (file_exists($html)) {
             $database = Database::get_instance();
-            $page_data = self::$main_pages_data[$page];
+            $page_data = self::$mainViewsData[$page];
             $file = $page_data['file_name'];
             $title = $page_data['title'];
 
@@ -82,8 +82,8 @@ class Router
                 }
             }
 
-            $action_href = $username === 'Guest' ? 'login' : 'logout';
-            $action_name = $username === 'Guest' ? 'Sign In' : 'Log Out';
+            $actionHref = $username === 'Guest' ? 'login' : 'logout';
+            $actionName = $username === 'Guest' ? 'Sign In' : 'Log Out';
 
             ob_start();
 
