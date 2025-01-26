@@ -15,7 +15,7 @@
         </header>
         <form 
             class="form form-modify form-modify-user form-add-user hide-element" 
-            action="<?php echo DOMAIN; ?>/api/profile.php" 
+            action="<?php echo SERVER; ?>/api/profile.php" 
             enctype="multipart/form-data" 
             data-form-type="user/add"
             method="{}"
@@ -89,7 +89,7 @@
         </form>
         <form 
             class="form form-modify form-modify-user form-edit-user" 
-            action="<?php echo DOMAIN; ?>/api/profile.php" 
+            action="<?php echo SERVER; ?>/api/profile.php" 
             data-form-type="user/edit" 
             method="{}"
         >
@@ -164,7 +164,7 @@
         </header>
         <form 
             class="form form-modify form-modify-car form-add-car hide-element" 
-            action="<?php echo DOMAIN; ?>/api/profile.php" 
+            action="<?php echo SERVER; ?>/api/profile.php" 
             enctype="multipart/form-data" 
             data-form-type="car/add" 
             method="{}"
@@ -313,7 +313,7 @@
         </form>
         <form 
             class="form form-modify form-modify-car form-edit-car" 
-            action="<?php echo DOMAIN; ?>/api/profile.php" 
+            action="<?php echo SERVER; ?>/api/profile.php" 
             data-form-type="car/edit" 
             method="{}"
         >
@@ -465,7 +465,7 @@
             </header>
             <form 
                 class="form" 
-                action="<?php echo DOMAIN; ?>/api/profile.php" 
+                action="<?php echo SERVER; ?>/api/profile.php" 
                 method="DELETE"
             >
                 <div class="div-grid-btn-container grid-2-columns">
@@ -493,7 +493,7 @@
             </header>
             <form 
                 class="form" 
-                action="<?php echo DOMAIN; ?>/api/image.php" 
+                action="<?php echo SERVER; ?>/api/image.php" 
                 enctype="multipart/form-data" 
                 method="POST"
             >
@@ -528,7 +528,7 @@
             </header>
             <form 
                 class="form" 
-                action="<?php echo DOMAIN; ?>/api/commission.php" 
+                action="<?php echo SERVER; ?>/api/commission.php" 
                 method="PUT"
             >
                 <div class="div-input-container">

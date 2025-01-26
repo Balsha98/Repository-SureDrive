@@ -4,14 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="<?php echo DOMAIN; ?>/assets/media/car-rental-icon.ico">
-    <link rel="stylesheet" href="<?php echo DOMAIN; ?>/assets/css/general.css?ts=<?php echo $timestamp; ?>">
-    <link rel="stylesheet" href="<?php echo DOMAIN; ?>/assets/css/<?php echo $file; ?>.css?ts=<?php echo $timestamp; ?>">
-    <script src="<?php echo DOMAIN; ?>/assets/js/jQuery.js" defer></script>
-    <script type="module" src="<?php echo DOMAIN; ?>/assets/js/cookie.js" defer></script>
-    <script type="module" src="<?php echo DOMAIN; ?>/assets/js/general.js" defer></script>
-    <script type="module" src="<?php echo DOMAIN; ?>/assets/js/request.js" defer></script>
-    <script type="module" src="<?php echo DOMAIN; ?>/assets/js/<?php echo $file; ?>.js" defer></script>
+    <link rel="icon" href="<?php echo SERVER; ?>/assets/media/car-rental-icon.ico">
+    <link rel="stylesheet" href="<?php echo SERVER; ?>/assets/css/general.css?ts=<?php echo $timestamp; ?>">
+    <link rel="stylesheet" href="<?php echo SERVER; ?>/assets/css/<?php echo $file; ?>.css?ts=<?php echo $timestamp; ?>">
+    <script src="<?php echo SERVER; ?>/assets/js/lib/jQuery.js" defer></script>
+    <script type="module" src="<?php echo SERVER; ?>/assets/js/general.js" defer></script>
+    <script type="module" src="<?php echo SERVER; ?>/assets/js/<?php echo $file; ?>.js" defer></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
     <title>SureDrive | <?php echo $title; ?></title>
 </head>
@@ -22,7 +20,7 @@
         <!-- HEADER LOGO CONTAINER -->
         <div 
             class="div-header-logo-container logo-container" 
-            data-href="<?php echo DOMAIN; ?>/home" 
+            data-href="<?php echo SERVER; ?>/home" 
             data-target="_self"
         >
             <ion-icon class="logo-icon" name="car-sport"></ion-icon>
@@ -52,7 +50,7 @@
             <ul class="sidebar-link-list">
                 <li 
                     class="sidebar-link-list-item <?php echo $title === 'Home' ? 'active-page-link' : ''; ?>" 
-                    data-href="<?php echo DOMAIN; ?>/home"
+                    data-href="<?php echo SERVER; ?>/home"
                     data-target="_self"
                 >
                     <span>Home</span>
@@ -60,7 +58,7 @@
                 </li>
                 <li 
                     class="sidebar-link-list-item <?php echo $title === 'Details' ? 'active-page-link' : ''; ?>" 
-                    data-href="<?php echo DOMAIN; ?>/details"
+                    data-href="<?php echo SERVER; ?>/details"
                     data-target="_self"
                 >
                     <span>Details</span>
@@ -68,7 +66,7 @@
                 </li>
                 <li 
                     class="sidebar-link-list-item <?php echo $title === 'About' ? 'active-page-link' : ''; ?>" 
-                    data-href="<?php echo DOMAIN; ?>/about"
+                    data-href="<?php echo SERVER; ?>/about"
                     data-target="_self"
                 >
                     <span>About</span>
@@ -76,7 +74,7 @@
                 </li>
                 <li 
                     class="sidebar-link-list-item <?php echo $title === 'Profile' ? 'active-page-link' : ''; ?>" 
-                    data-href="<?php echo DOMAIN; ?>/profile"
+                    data-href="<?php echo SERVER; ?>/profile"
                     data-target="_self"
                 >
                     <span>Profile</span>
@@ -87,7 +85,7 @@
         <div class="div-single-btn-container">
             <a 
                 class="btn btn-primary" 
-                href="<?php echo DOMAIN; ?>/<?php echo $action_href; ?>"
+                href="<?php echo SERVER; ?>/<?php echo $action_href; ?>"
             >
                 <?php echo $action_name; ?>
             </a>
