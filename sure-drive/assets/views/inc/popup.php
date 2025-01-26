@@ -170,7 +170,7 @@
             method="{}"
         >
             <div class="div-multi-input-containers grid-4-columns">
-                <?php $sellers_owners = $database->get_sellers_and_owners(); ?>
+                <?php $sellers_owners = $database->getSellersAndOwners(); ?>
                 <div class="div-input-container required-input-container">
                     <label for="add_car_seller_id">Seller:</label>
                     <div class="div-input-icon-container">

@@ -19,7 +19,7 @@ if ($roleID === 3) {
     [$commission] = $database->getUserTypeData($userType, $userID);
 }
 
-require_once 'assets/inc/popup.php';
+require_once 'assets/views/inc/popup.php';
 ?>
 
     <!-- MAIN CONTAINER -->
