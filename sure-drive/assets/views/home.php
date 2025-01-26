@@ -73,7 +73,7 @@
         <section id="section-cars" class="section-cars">
             <?php
             // FILTER OPTIONS FILE
-            require_once 'assets/inc/filter.php';
+            require_once 'assets/views/inc/filter.php';
             ?>
             <!-- CARS CONTAINER -->
             <div class="div-cars-container">

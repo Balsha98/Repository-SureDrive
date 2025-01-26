@@ -15,3 +15,5 @@ const getCookie = function (key) {
         }
     }
 };
+
+export { setCookie, unsetCookie, getCookie };

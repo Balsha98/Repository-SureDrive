@@ -38,14 +38,14 @@ class Router
     public static function renderPage($url)
     {
         // Require additional scripts.
-        require_once 'assets/models/Session.php';
-        require_once 'assets/models/Database.php';
-        require_once 'assets/helpers/Redirect.php';
-        require_once 'assets/helpers/Format.php';
-        require_once 'assets/helpers/Image.php';
+        require_once 'assets/class/Session.php';
+        require_once 'assets/class/Database.php';
+        require_once 'assets/class/helper/Redirect.php';
+        require_once 'assets/class/helper/Format.php';
+        require_once 'assets/class/helper/Image.php';
 
         $timestamp = time();
-        Session::start_session();
+        Session::start();
 
         $page = '';
         if ($url === '/') {
@@ -65,7 +65,7 @@ class Router
 
         $html = "assets/views/{$page}.php";
         if (file_exists($html)) {
-            $database = Database::get_instance();
+            $database = Database::getInstance();
             $pageData = self::$mainViewsData[$page];
             $file = $pageData['file_name'];
             $title = $pageData['title'];
@@ -73,8 +73,8 @@ class Router
             $username = 'Guest';
             $firstName = $username;
             if (Session::is_set('logged_in')) {
-                $username = Session::get_session_var('username');
-                $userRoleID = Session::get_session_var('role_id');
+                $username = Session::getSessionVar('username');
+                $userRoleID = Session::getSessionVar('role_id');
 
                 $usernameParts = explode(' ', $username);
                 if (is_array($usernameParts)) {
@@ -87,9 +87,9 @@ class Router
 
             ob_start();
 
-            require_once 'assets/inc/header.php';
+            require_once 'assets/views/inc/header.php';
             require_once $html;
-            require_once 'assets/inc/footer.php';
+            require_once 'assets/views/inc/footer.php';
 
             // Get content.
             return ob_get_clean();

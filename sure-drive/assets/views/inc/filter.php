@@ -21,7 +21,7 @@
                             </div>
                             <ul class="checkbox-list make-checkbox-list" data-filter-name="make">
                                 <?php
-                                $makes = $database->get_distinct_car_makes();
+                                $makes = $database->getDistinctCarMakes();
                                 foreach ($makes as $make) {
                                     echo "
                                         <li class='checkbox-list-item' data-make='{$make['make']}'>
@@ -210,7 +210,7 @@
                                 <li 
                                     class="checkbox-list-item" 
                                     data-min="50000"
-                                    data-max="<?php echo $database->get_max_value('mileage', 'description')['max']; ?>"
+                                    data-max="<?php echo $database->getMaxValue('mileage', 'description')['max']; ?>"
                                 >
                                     <div class="div-checkbox">
                                         <ion-icon name="checkmark-outline"></ion-icon>
@@ -284,7 +284,7 @@
                                 <li 
                                     class="checkbox-list-item" 
                                     data-min="50000"
-                                    data-max="<?php echo $database->get_max_value('final_price', 'description')['max']; ?>"
+                                    data-max="<?php echo $database->getMaxValue('final_price', 'description')['max']; ?>"
                                 >
                                     <div class="div-checkbox">
                                         <ion-icon name="checkmark-outline"></ion-icon>
