@@ -53,8 +53,10 @@ class Router
         } else {
             $url = explode('/', $url);
             if (!in_array($url[0], self::$mainViews)) {
-                if (in_array($url[0], self::$sideViews)) {
-                    require_once "assets/views/{$url[0]}.php";
+                $page = $url[0];
+                if (in_array($page, self::$sideViews)) {
+                    $title = $page;
+                    require_once "assets/views/{$page}.php";
                 }
 
                 return;

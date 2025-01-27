@@ -1,4 +1,4 @@
-import { unsetCookie } from "./helper/cookie.js";
+import { unsetCookie } from "./../helper/cookie.js";
 
 // ***** DOM ELEMENTS ***** //
 const formInputDivs = $(".div-form-inputs-container");
@@ -8,7 +8,6 @@ const prevStepBtns = $(".btn-previous-step");
 const resetBtns = $(".btn-reset");
 
 // Variables.
-let degrees = 0;
 const orderInputs = [
     "car_id",
     "seller_id",
@@ -111,7 +110,9 @@ const resetFields = function () {
     });
 
     // Visual appearance.
+    let degrees = +$(this).data("rotate");
     $(this).css("transform", `rotate(${(degrees += 360)}deg)`);
+    $(this).data("rotate", degrees);
 };
 
 // ***** EVENT LISTENERS ***** //

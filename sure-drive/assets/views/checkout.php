@@ -116,7 +116,7 @@ $totalFormatted = Format::formatNumber($total, 2);
                             </div>
                         </div>
                         <div class="div-grid-btn-container grid-3-columns">
-                            <button class="btn-reset" type="button">
+                            <button class="btn-reset" type="button" data-rotate="0">
                                 <ion-icon name="refresh"></ion-icon>
                             </button>
                             <button 
@@ -148,7 +148,7 @@ $totalFormatted = Format::formatNumber($total, 2);
                             <input id="order_phone" type="tel" name="order_phone">
                         </div>
                         <div class="div-grid-btn-container grid-3-columns">
-                            <button class="btn-reset" type="button">
+                            <button class="btn-reset" type="button" data-rotate="0">
                                 <ion-icon name="refresh"></ion-icon>
                             </button>
                             <button 
@@ -203,7 +203,7 @@ $totalFormatted = Format::formatNumber($total, 2);
                             </div>
                         </div>
                         <div class="div-grid-btn-container grid-3-columns">
-                            <button class="btn-reset" type="button">
+                            <button class="btn-reset" type="button" data-rotate="0">
                                 <ion-icon name="refresh"></ion-icon>
                             </button>
                             <button 
@@ -305,5 +305,5 @@ $totalFormatted = Format::formatNumber($total, 2);
     </main>
 
 <?php
-require_once 'assets/inc/footer.php';
+require_once 'assets/views/inc/footer.php';
 ?>
