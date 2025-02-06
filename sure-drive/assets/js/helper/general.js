@@ -58,4 +58,4 @@ viewDetailsBtns?.each((_, btn) => {
 // Going to top of the page.
 divToTop.click(toTopOfPage);
 
-export { divToTop, openPage };
+export { divToTop, openPage, saveLastViewedCar };

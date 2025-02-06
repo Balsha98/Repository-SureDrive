@@ -1,4 +1,4 @@
-import { divToTop, openPage } from "../helper/general.js";
+import { divToTop, openPage, saveLastViewedCar } from "../helper/general.js";
 import { handleRequest } from "../helper/request.js";
 
 // ***** DOM ELEMENTS ***** //
