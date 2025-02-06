@@ -144,6 +144,7 @@
     left: 0;
     width: 100%;
     height: inherit;
+    background-color: var(--opaque-gray-shade-sm);
     backdrop-filter: blur(0.4rem);
     z-index: 1;
 }
