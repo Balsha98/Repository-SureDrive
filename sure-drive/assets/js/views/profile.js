@@ -59,6 +59,7 @@ const profileObserver = new IntersectionObserver(
 profileObserver.observe(userDetailsSection[0]);
 
 // ***** FUNCTIONS ***** //
+// Toggler functions.
 const closePopup = function () {
     const parent = $(this.closest(".div-popup"));
     parent.toggleClass("show-popup");
@@ -70,24 +71,17 @@ const showPopup = function (popup) {
 
 const toggleList = function () {
     listHeaders.each((_, header) => {
-        const currClass = $(this).attr("class").split(" ")[1];
-        const headerClass = $(header).attr("class").split(" ")[1];
+        const currHeader = $(header).attr("class").split(" ")[1];
+        const clickedHeader = $(this).attr("class").split(" ")[1];
 
-        if (currClass !== headerClass) {
-            if ($(header).hasClass("active-list-container-header")) {
-                $(header).removeClass("active-list-container-header");
-            }
+        if (currHeader !== clickedHeader) {
+            $(header).removeClass("active-list-container-header");
+            getRelatedItemList(header).addClass("hide-element");
         }
     });
 
     $(this).toggleClass("active-list-container-header");
-
-    const parent = $(this.closest(".div-list-container"));
-    const parentClass = parent.attr("class").split(" ")[1];
-
-    const itemsList = $(`.${parentClass} .div-scroll-list-container`);
-    itemsList.toggleClass("hide-element");
-
+    getRelatedItemList(this).toggleClass("hide-element");
     this.scrollIntoView();
 };
 
@@ -295,6 +289,12 @@ const waitForImage = function (imgType) {
         const img = value.split("\\")[2];
         $(`.${imgType}-img-container`).attr("data-content", img);
     }
+};
+
+const getRelatedItemList = function (header) {
+    const parent = $(header.closest(".div-list-container"));
+    const parentClass = parent.attr("class").split(" ")[1];
+    return $(`.${parentClass} .div-scroll-list-container`);
 };
 
 const getImgID = function (btn) {

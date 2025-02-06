@@ -442,15 +442,17 @@ input[type="number"]::-webkit-outer-spin-button {
     padding: 2.4rem;
     background-color: var(--gray-shade);
     border-radius: inherit;
-    transition: opacity 0.5s;
+    transition: all 0.5s;
     cursor: pointer;
 }
 
 .active-list-container-header {
+    box-shadow: inset 0 0 0 0.2rem var(--gray-tint);
     opacity: 0.8;
 }
 
 .list-container-header:hover {
+    box-shadow: inset 0 0 0 0.2rem var(--gray-tint);
     opacity: 0.8;
 }
 
