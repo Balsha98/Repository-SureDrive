@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS car_dealership;
+DROP DATABASE IF EXISTS sure_drive;
 
-CREATE DATABASE car_dealership;
+CREATE DATABASE sure_drive;
 
-USE car_dealership;
+USE sure_drive;
 
 
 DROP TABLE IF EXISTS `car`;
