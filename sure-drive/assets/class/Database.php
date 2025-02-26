@@ -12,7 +12,7 @@ class Database extends PDO
     public static function getInstance()
     {
         if (!isset(self::$db)) {
-            self::$db = new Database('car_dealership', 'root', '');
+            self::$db = new Database('sure_drive', 'root', '');
         }
 
         return self::$db;
