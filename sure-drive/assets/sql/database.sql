@@ -5,8 +5,8 @@ CREATE DATABASE sure_drive;
 USE sure_drive;
 
 
-DROP TABLE IF EXISTS `car`;
-CREATE TABLE `car` (
+DROP TABLE IF EXISTS `cars`;
+CREATE TABLE `cars` (
     `car_id` INT NOT NULL AUTO_INCREMENT,
     `make` VARCHAR(50) NOT NULL,
     `model` VARCHAR(50) NOT NULL,
@@ -14,32 +14,32 @@ CREATE TABLE `car` (
     PRIMARY KEY (`car_id`)
 );
 
-INSERT INTO `car` VALUES 
+INSERT INTO `cars` VALUES 
 (1, 'Toyota', 'Camry', 2022),
 (2, 'Honda', 'Civic', 2021),
 (3, 'Ford', 'Mustang', 2023),
 (4, 'Chevrolet', 'Malibu', 2020),
 (5, 'BMW', 'X5', 2024);
 
--- SELECT * FROM `car`;
+-- SELECT * FROM `cars`;
 
 
-DROP TABLE IF EXISTS `role`;
-CREATE TABLE `role` (
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE `roles` (
     `role_id` INT NOT NULL,
     `role_name` VARCHAR(50) NOT NULL,
     PRIMARY KEY (`role_id`)
 );
 
-INSERT INTO `role` (`role_id`, `role_name`) VALUES
+INSERT INTO `roles` (`role_id`, `role_name`) VALUES
 (1,	'Administrator'),
 (2,	'Buyer'),
 (3,	'Seller'),
 (4,	'Owner');
 
 
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
     `user_id` INT NOT NULL AUTO_INCREMENT,
     `role_id` INT NOT NULL,
     `username` VARCHAR(50) NOT NULL,
@@ -50,22 +50,22 @@ CREATE TABLE `user` (
     `user_image` LONGBLOB NULL DEFAULT NULL,
     `member_since` DATETIME NULL DEFAULT NOW(),
     PRIMARY KEY (`user_id`),
-    FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`) 
+    FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`) 
         ON UPDATE CASCADE 
         ON DELETE CASCADE
 );
 
-INSERT INTO `user` VALUES
+INSERT INTO `users` VALUES
 (1,	1, 'User1', '21232f297a57a5a743894a0e4a801fc3', "user1@gmail.com", "+123 45 678 9101", "Budva, Montenegro", LOAD_FILE(''), '2024-01-15'),
 (2,	2, 'User2', '794aad24cbd58461011ed9094b7fa212', "user2@gmail.com", "+123 45 678 9101", "Dubrovnik, Croatia", LOAD_FILE(''), '2024-01-15'),
 (3,	3, 'User3', '64c9ac2bb5fe46c3ac32844bb97be6bc', "user3@gmail.com", "+123 45 678 9101", "Dallas, United States", LOAD_FILE(''), '2024-01-15'),
 (4,	4, 'User4', '72122ce96bfec66e2396d2e25225d70a', "user4@gmail.com", "+123 45 678 9101", "Berlin, Germany", LOAD_FILE(''), '2024-01-15');
 
--- SELECT * FROM `user`;
+-- SELECT * FROM `users`;
 
 
-DROP TABLE IF EXISTS `description`;
-CREATE TABLE `description` (
+DROP TABLE IF EXISTS `descriptions`;
+CREATE TABLE `descriptions` (
     `desc_id` INT NOT NULL AUTO_INCREMENT,
     `car_id` INT NOT NULL,
     `seller_id` INT NOT NULL,
@@ -81,25 +81,25 @@ CREATE TABLE `description` (
     `final_price` FLOAT NOT NULL,
     `date_added` DATETIME NULL DEFAULT NOW(),
     PRIMARY KEY (`desc_id`),
-    FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`) 
+    FOREIGN KEY (`car_id`) REFERENCES `cars` (`car_id`) 
         ON UPDATE CASCADE 
         ON DELETE CASCADE,
-    FOREIGN KEY (`seller_id`) REFERENCES `user` (`user_id`) 
+    FOREIGN KEY (`seller_id`) REFERENCES `users` (`user_id`) 
         ON UPDATE CASCADE 
         ON DELETE CASCADE,
-    FOREIGN KEY (`owner_id`) REFERENCES `user` (`user_id`) 
+    FOREIGN KEY (`owner_id`) REFERENCES `users` (`user_id`) 
         ON UPDATE CASCADE 
         ON DELETE CASCADE
 );
 
-INSERT INTO `description` VALUES 
+INSERT INTO `descriptions` VALUES 
 (1, 1, 3, 4, 'Reliable and fuel-efficient sedan.', LOAD_FILE(''), 15000, 203, 'Gasoline', '#f8f9fa', 'Automatic', 28000.00, 26500.00, '2024-01-15'),
 (2, 2, 3, 4, 'Compact, efficient, perfect for city driving.', LOAD_FILE(''), 18000, 158, 'Gasoline', '#dee2e6', 'Manual', 22000.00, 21000.00, '2024-02-10'),
 (3, 3, 3, 4, 'Powerful and stylish sports car.', LOAD_FILE(''), 8000, 450, 'Gasoline', '#f03e3e', 'Automatic', 55000.00, 53000.00, '2024-03-20'),
 (4, 4, 3, 4, 'Spacious sedan with comfortable interior.', LOAD_FILE(''), 20000, 250, 'Gasoline', '#1c7ed6', 'Automatic', 27000.00, 25500.00, '2024-04-05'),
 (5, 5, 3, 4, 'Luxury SUV with modern features.', LOAD_FILE(''), 5000, 335, 'Diesel', '#ffd43b', 'Automatic', 65000.00, 63000.00, '2024-05-25');
 
--- SELECT * FROM `description`;
+-- SELECT * FROM `descriptions`;
 
 
 DROP TABLE IF EXISTS `cars_bought`;
@@ -114,7 +114,7 @@ CREATE TABLE `cars_bought` (
     `shift` VARCHAR(20) NOT NULL,
     `final_price` FLOAT NOT NULL,
     PRIMARY KEY (`car_id`),
-    FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) 
+    FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) 
         ON UPDATE CASCADE 
         ON DELETE CASCADE
 );
@@ -122,28 +122,28 @@ CREATE TABLE `cars_bought` (
 -- SELECT * FROM `cars_bought`;
 
 
-DROP TABLE IF EXISTS `sale`;
-CREATE TABLE `sale` (
+DROP TABLE IF EXISTS `sales`;
+CREATE TABLE `sales` (
     `sale_id` INT NOT NULL AUTO_INCREMENT,
     `user_id` INT DEFAULT NULL,
     `car_name` VARCHAR(100) NOT NULL,
-    `seller` VARCHAR(50) NOT NULL,
-    `buyer` VARCHAR(50) NOT NULL,
-    `owner` VARCHAR(50) NOT NULL,
+    `sellers` VARCHAR(50) NOT NULL,
+    `buyers` VARCHAR(50) NOT NULL,
+    `owners` VARCHAR(50) NOT NULL,
     `commission` FLOAT NOT NULL,
     `total_price` FLOAT NOT NULL,
     `date` DATETIME NULL DEFAULT NOW(),
     PRIMARY KEY (`sale_id`),
-    FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) 
+    FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) 
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
 
--- SELECT * FROM `sale`;
+-- SELECT * FROM `sales`;
 
 
-DROP TABLE IF EXISTS `shipment`;
-CREATE TABLE `shipment` (
+DROP TABLE IF EXISTS `shipments`;
+CREATE TABLE `shipments` (
     `shipment_id` INT NOT NULL AUTO_INCREMENT,
     `sale_id` INT NOT NULL,
     `first_name` VARCHAR(50) NOT NULL,
@@ -157,7 +157,7 @@ CREATE TABLE `shipment` (
     `city` VARCHAR(50) NOT NULL,
     `zip` INT NOT NULL,
     PRIMARY KEY (`shipment_id`),
-    FOREIGN KEY (`sale_id`) REFERENCES `sale` (`sale_id`) 
+    FOREIGN KEY (`sale_id`) REFERENCES `sales` (`sale_id`) 
         ON UPDATE CASCADE 
         ON DELETE CASCADE
 );
@@ -165,62 +165,62 @@ CREATE TABLE `shipment` (
 -- SELECT * FROM `order`;
 
 
-DROP TABLE IF EXISTS `buyer`;
-CREATE TABLE `buyer` (
+DROP TABLE IF EXISTS `buyers`;
+CREATE TABLE `buyers` (
     `buyer_id` INT NOT NULL AUTO_INCREMENT,
     `user_id` INT NOT NULL,
     `funds_spent` FLOAT NULL DEFAULT 0,
     `cars_bought` INT NULL DEFAULT 0,
     PRIMARY KEY (`buyer_id`),
-    FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) 
+    FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) 
         ON UPDATE CASCADE 
         ON DELETE CASCADE
 );
 
-INSERT INTO `buyer` (`buyer_id`, `user_id`) VALUES (1, 2);
+INSERT INTO `buyers` (`buyer_id`, `user_id`) VALUES (1, 2);
 
 
-DROP TABLE IF EXISTS `seller`;
-CREATE TABLE `seller` (
+DROP TABLE IF EXISTS `sellers`;
+CREATE TABLE `sellers` (
     `seller_id` INT NOT NULL AUTO_INCREMENT,
     `user_id` INT NOT NULL,
     `commission` FLOAT DEFAULT 0,
     `funds_made` FLOAT DEFAULT 0,
     `cars_sold` INT DEFAULT 0,
     PRIMARY KEY (`seller_id`),
-    FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) 
+    FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) 
         ON UPDATE CASCADE 
         ON DELETE CASCADE
 );
 
-INSERT INTO `seller` (`seller_id`, `user_id`, `commission`) VALUES (1, 3 , 5);
+INSERT INTO `sellers` (`seller_id`, `user_id`, `commission`) VALUES (1, 3 , 5);
 
 
-DROP TABLE IF EXISTS `owner`;
-CREATE TABLE `owner` (
+DROP TABLE IF EXISTS `owners`;
+CREATE TABLE `owners` (
     `owner_id` INT NOT NULL AUTO_INCREMENT,
     `user_id` INT NOT NULL,
     `funds_made` FLOAT DEFAULT 0,
     `cars_owned` INT DEFAULT 0,
     PRIMARY KEY (`owner_id`),
-    FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) 
+    FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) 
         ON UPDATE CASCADE 
         ON DELETE CASCADE
 );
 
-INSERT INTO `owner` (`owner_id`, `user_id`) VALUES (1, 4);
+INSERT INTO `owners` (`owner_id`, `user_id`) VALUES (1, 4);
 
 
-DROP TABLE IF EXISTS `newsletter`;
-CREATE TABLE `newsletter` (
+DROP TABLE IF EXISTS `newsletters`;
+CREATE TABLE `newsletters` (
     `email_id` INT NOT NULL AUTO_INCREMENT,
     `newsletter_email` VARCHAR(75) NOT NULL,
     PRIMARY KEY (`email_id`)
 );
 
 
-DROP TABLE IF EXISTS `log`;
-CREATE TABLE `log` (
+DROP TABLE IF EXISTS `logs`;
+CREATE TABLE `logs` (
     `log_id` INT NOT NULL,
     `log_type` VARCHAR(25) NOT NULL,
     `message` VARCHAR(350) NOT NULL,
