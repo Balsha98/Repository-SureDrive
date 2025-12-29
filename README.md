@@ -140,14 +140,18 @@ SureDrive/
 
 The application uses a relational database with the following main tables:
 
-- **users** - User accounts and authentication
-- **roles** - User role definitions
-- **vehicles** - Vehicle inventory and details
-- **purchases** - Transaction records
-- **dealerships** - Dealership information
-- **owners** - Owner profiles
-- **sellers** - Seller profiles
-- **buyers** - Buyer profiles
+- **users** - User accounts and authentication.
+- **descriptions** - User-related descriptions.
+- **rols** - User role definitions.
+- **cars** - Car inventory and details.
+- **cars_bought** - Bought car inventory and details.
+- **sales** - Transaction records.
+- **shipments** - Shipment records.
+- **owners** - Owner profiles.
+- **sellers** - Seller profiles.
+- **buyers** - Buyer profiles.
+- **newsletters** - Newsletter information.
+- **logs** - Application log information.
 
 ## Security Features
 
