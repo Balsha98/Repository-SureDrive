@@ -13,50 +13,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data['user_id'] = $buyerID;
     $data['buyer'] = Session::getSessionVar('username');
 
-    $buyerFundsSpent = $database->getValueForUserType('funds_spent', 'buyer', $buyerID);
+    $buyerFundsSpent = $database->getValueForUserType('funds_spent', 'buyers', $buyerID);
     $buyerFundsSpent += (float) $data['total_price'];
-    $database->updateValueForUserType('funds_spent', 'buyer', $buyerFundsSpent, $buyerID);
+    $database->updateValueForUserType('funds_spent', 'buyers', $buyerFundsSpent, $buyerID);
 
-    $carsBought = $database->getValueForUserType('cars_bought', 'buyer', $buyerID);
-    $database->updateValueForUserType('cars_bought', 'buyer', ++$carsBought, $buyerID);
+    $carsBought = $database->getValueForUserType('cars_bought', 'buyers', $buyerID);
+    $database->updateValueForUserType('cars_bought', 'buyers', ++$carsBought, $buyerID);
 
     // Seller related data.
     $sellerID = $data['seller_id'];
-    [$seller] = $database->getUserTypeData('user', $sellerID);
+    [$seller] = $database->getUserTypeData('users', $sellerID);
     $data['seller'] = $seller['username'];
 
-    [$commission] = $database->getUserTypeData('seller', $sellerID);
+    [$commission] = $database->getUserTypeData('sellers', $sellerID);
     $data['commission'] = $commission['commission'];
 
-    $sellerFundsMade = (float) $database->getValueForUserType('funds_made', 'seller', $sellerID);
+    $sellerFundsMade = (float) $database->getValueForUserType('funds_made', 'sellers', $sellerID);
     $sellerFundsMade += (float) $data['final_price'] * ((float) $commission['commission'] / 100);
-    $database->updateValueForUserType('funds_made', 'seller', $sellerFundsMade, $sellerID);
+    $database->updateValueForUserType('funds_made', 'sellers', $sellerFundsMade, $sellerID);
 
-    $carsSold = (int) $database->getValueForUserType('cars_sold', 'seller', $sellerID);
-    $database->updateValueForUserType('cars_sold', 'seller', ++$carsSold, $sellerID);
+    $carsSold = (int) $database->getValueForUserType('cars_sold', 'sellers', $sellerID);
+    $database->updateValueForUserType('cars_sold', 'sellers', ++$carsSold, $sellerID);
 
     // Owner related data.
     $ownerID = $data['owner_id'];
-    [$owner] = $database->getUserTypeData('user', $ownerID);
+    [$owner] = $database->getUserTypeData('users', $ownerID);
     $data['owner'] = $owner['username'];
 
-    $ownerFundsMade = (float) $database->getValueForUserType('funds_made', 'owner', $ownerID);
+    $ownerFundsMade = (float) $database->getValueForUserType('funds_made', 'owners', $ownerID);
     $ownerFundsMade += (float) $data['final_price'] - $sellerFundsMade;
-    $database->updateValueForUserType('funds_made', 'owner', $ownerFundsMade, $ownerID);
+    $database->updateValueForUserType('funds_made', 'owners', $ownerFundsMade, $ownerID);
 
-    $carsOwned = $database->getValueForUserType('cars_owned', 'owner', $ownerID);
-    $database->updateValueForUserType('cars_owned', 'owner', ++$carsOwned, $ownerID);
+    $carsOwned = $database->getValueForUserType('cars_owned', 'owners', $ownerID);
+    $database->updateValueForUserType('cars_owned', 'owners', ++$carsOwned, $ownerID);
 
     // Insert new sale.
     $database->insertNewSale($data);
-    $saleID = $database->getLastAddedItemID('sale')['id'];
+    $saleID = $database->getLastAddedItemID('sales')['id'];
     $data['sale_id'] = $saleID;
 
     // Insert new shipment.
     $database->insertNewShipment($data);
 
     // Deleting the purchased car.
-    $database->deleteItem('car', $data['car_id']);
+    $database->deleteItem('cars', $data['car_id']);
 
     // Save the purchased car for the buyer.
     $database->insertNewBoughtCar($data);

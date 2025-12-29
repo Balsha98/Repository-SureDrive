@@ -210,7 +210,7 @@
                                 <li 
                                     class="checkbox-list-item" 
                                     data-min="50000"
-                                    data-max="<?php echo $database->getMaxValue('mileage', 'description')['max']; ?>"
+                                    data-max="<?php echo $database->getMaxValue('mileage', 'descriptions')['max']; ?>"
                                 >
                                     <div class="div-checkbox">
                                         <ion-icon name="checkmark-outline"></ion-icon>
@@ -284,7 +284,7 @@
                                 <li 
                                     class="checkbox-list-item" 
                                     data-min="50000"
-                                    data-max="<?php echo $database->getMaxValue('final_price', 'description')['max']; ?>"
+                                    data-max="<?php echo $database->getMaxValue('final_price', 'descriptions')['max']; ?>"
                                 >
                                     <div class="div-checkbox">
                                         <ion-icon name="checkmark-outline"></ion-icon>

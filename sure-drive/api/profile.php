@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!isset($_POST['add_car_image'])) {
             $car_id = $database->getLastAddedItemID($item_type)['id'];
             $image = file_get_contents($_FILES['add_car_image']['tmp_name']);
-            $database->updateItemImage('description', $item_type, $image, $car_id);
+            $database->updateItemImage('descriptions', $item_type, $image, $car_id);
         }
     } else if ($item_type === 'user') {
         $database->insertNewUser($data);
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!isset($_POST['add_user_image'])) {
             $user_id = $database->getLastAddedItemID($item_type)['id'];
             $image = file_get_contents($_FILES['add_user_image']['tmp_name']);
-            $database->updateItemImage($item_type, $item_type, $image, $user_id);
+            $database->updateItemImage("{$item_type}s", $item_type, $image, $user_id);
         }
     }
 } else {
@@ -41,6 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             Session::setSessionVar('username', $data['edit_profile_username']);
         }
     } else if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-        $database->deleteItem($data['item_delete_type'], $data['item_delete_id']);
+        $database->deleteItem("{$data['item_delete_type']}s", $data['item_delete_id']);
     }
 }

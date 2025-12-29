@@ -9,9 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $image = file_get_contents($_FILES['image']['tmp_name']);
 
         if ($itemType === 'car') {
-            $database->updateItemImage('description', $itemType, $image, $itemID);
+            $database->updateItemImage('descriptions', $itemType, $image, $itemID);
         } else if ($itemType === 'user') {
-            $database->updateItemImage($itemType, $itemType, $image, $itemID);
+            $database->updateItemImage("{$itemType}s", $itemType, $image, $itemID);
         }
     }
 }

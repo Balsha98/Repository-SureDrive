@@ -36,7 +36,7 @@ class Database extends PDO
     public function userSignup($data)
     {
         $query = '
-            INSERT INTO user (role_id, username, password, user_email) 
+            INSERT INTO users (role_id, username, password, user_email) 
             VALUES (:role_id, :username, :password, :user_email);
         ';
 
@@ -64,9 +64,9 @@ class Database extends PDO
     public function getAllUsers()
     {
         $query = '
-            SELECT * FROM user 
-            INNER JOIN role
-            ON user.role_id = role.role_id
+            SELECT * FROM users 
+            INNER JOIN roles
+            ON users.role_id = roles.role_id
             ORDER BY user.user_id ASC;
         ';
 
@@ -82,9 +82,9 @@ class Database extends PDO
     public function getUserData($username)
     {
         $query = "
-            SELECT * FROM user 
-            INNER JOIN role 
-            ON user.role_id = role.role_id 
+            SELECT * FROM users
+            INNER JOIN roles 
+            ON users.role_id = roles.role_id 
             WHERE user.username = '{$username}';
         ";
 
@@ -113,7 +113,7 @@ class Database extends PDO
     {
         $query = '
             SELECT user_id, username 
-            FROM user 
+            FROM users 
             WHERE role_id = 3 
             OR role_id = 4;
         ';
@@ -130,7 +130,7 @@ class Database extends PDO
     public function insertNewUser($data)
     {
         $query = '
-            INSERT INTO user (
+            INSERT INTO users (
                 role_id, username, password,
                 user_email, user_phone, location
             ) VALUES (
@@ -145,7 +145,7 @@ class Database extends PDO
     public function updateUserByID($id, $data)
     {
         $query = "
-            UPDATE user SET 
+            UPDATE users SET 
             role_id = :role_id, username = :username, 
             user_email = :email, user_phone = :phone, location = :location
             WHERE user_id = {$id};
@@ -157,7 +157,7 @@ class Database extends PDO
     public function updateUserProfile($id, $data)
     {
         $query = "
-            UPDATE user SET 
+            UPDATE users SET 
             username = :username, user_email = :email, 
             user_phone = :phone, location = :location
             WHERE user_id = {$id};
@@ -185,9 +185,9 @@ class Database extends PDO
     public function getAllCars()
     {
         $query = '
-            SELECT * FROM car 
-            INNER JOIN description 
-            ON car.car_id = description.car_id 
+            SELECT * FROM cars 
+            INNER JOIN descriptions 
+            ON cars.car_id = descriptions.car_id 
             ORDER BY car.car_id ASC;
         ';
 
@@ -215,9 +215,9 @@ class Database extends PDO
     public function getFilteredCars($filters)
     {
         $query = '
-            SELECT car.car_id FROM car 
-            INNER JOIN description 
-            ON car.car_id = description.car_id 
+            SELECT cars.car_id FROM cars 
+            INNER JOIN descriptions 
+            ON cars.car_id = descriptions.car_id 
             WHERE {CLAUSE};
         ';
 
@@ -262,11 +262,11 @@ class Database extends PDO
     public function getCarsForUserID($userType, $userID)
     {
         $query = "
-            SELECT * FROM car 
-            INNER JOIN description 
-            ON car.car_id = description.car_id 
-            WHERE description.{$userType}_id = {$userID} 
-            ORDER BY car.car_id ASC;
+            SELECT * FROM cars 
+            INNER JOIN descriptions 
+            ON cars.car_id = descriptions.car_id 
+            WHERE descriptions.{$userType}_id = {$userID} 
+            ORDER BY cars.car_id ASC;
         ";
 
         $array = self::$db->query($query);
@@ -281,12 +281,12 @@ class Database extends PDO
     public function getCarDetailsByID($car_id)
     {
         $query = "
-            SELECT * FROM car 
-            INNER JOIN description
-            ON car.car_id = description.car_id 
-            INNER JOIN user 
-            ON description.seller_id = user.user_id 
-            WHERE car.car_id = {$car_id};
+            SELECT * FROM cars 
+            INNER JOIN descriptions
+            ON cars.car_id = descriptions.car_id 
+            INNER JOIN users 
+            ON descriptions.seller_id = users.user_id 
+            WHERE cars.car_id = {$car_id};
         ";
 
         $array = self::$db->query($query);
@@ -308,7 +308,7 @@ class Database extends PDO
     private function insertNewCarDetails($data)
     {
         $query = '
-            INSERT INTO car (make, model, year) 
+            INSERT INTO cars (make, model, year) 
             VALUES (:make, :model, :year);
         ';
 
@@ -322,7 +322,7 @@ class Database extends PDO
     private function insertNewCarDescription($data)
     {
         $query = '
-            INSERT INTO description (
+            INSERT INTO descriptions (
                 car_id, seller_id, owner_id, note, mileage, horse_power, 
                 fuel, color, shift, original_price, final_price
             ) VALUES (
@@ -362,15 +362,15 @@ class Database extends PDO
     public function updateCarByID($id, $data)
     {
         $query = "
-            UPDATE car 
-            INNER JOIN description 
-            ON car.car_id = description.car_id SET 
-            car.make = :make, car.model = :model, car.year = :year,
-            description.seller_id = :seller_id, description.owner_id = :owner_id, description.note = :note, 
-            description.mileage = :mileage, description.horse_power = :horse_power, 
-            description.fuel = :fuel, description.color = :color, description.shift = :shift, 
-            description.original_price = :original_price, description.final_price = :final_price 
-            WHERE car.car_id = {$id};
+            UPDATE cars 
+            INNER JOIN descriptions 
+            ON cars.car_id = descriptions.car_id SET 
+            cars.make = :make, cars.model = :model, cars.year = :year,
+            descriptions.seller_id = :seller_id, descriptions.owner_id = :owner_id, descriptions.note = :note, 
+            descriptions.mileage = :mileage, descriptions.horse_power = :horse_power, 
+            descriptions.fuel = :fuel, descriptions.color = :color, descriptions.shift = :shift, 
+            descriptions.original_price = :original_price, descriptions.final_price = :final_price 
+            WHERE cars.car_id = {$id};
         ";
 
         $params = [
@@ -385,7 +385,7 @@ class Database extends PDO
 
     public function getAllSales()
     {
-        $query = 'SELECT * FROM sale;';
+        $query = 'SELECT * FROM sales;';
         $statement = self::$db->query($query);
 
         if ($statement->execute()) {
@@ -397,7 +397,7 @@ class Database extends PDO
 
     public function getSalesForUserID($userID)
     {
-        $query = "SELECT * FROM sale WHERE user_id = {$userID};";
+        $query = "SELECT * FROM sales WHERE user_id = {$userID};";
         $statement = self::$db->query($query);
 
         if ($statement->execute()) {
@@ -410,7 +410,7 @@ class Database extends PDO
     public function insertNewSale($data)
     {
         $query = '
-            INSERT INTO sale (
+            INSERT INTO sales (
                 user_id, car_name, buyer, 
                 seller, owner, commission, total_price
             ) VALUES (
@@ -430,7 +430,7 @@ class Database extends PDO
     public function insertNewShipment($data)
     {
         $query = '
-            INSERT INTO shipment (
+            INSERT INTO shipments (
                 sale_id, first_name, last_name, 
                 order_email, order_phone, shipping_address, 
                 apt_number, country, city, zip

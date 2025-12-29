@@ -16,7 +16,7 @@ $roleID = (int) $userData['role_id'];
 $roleName = $userData['role_name'];
 $userType = strtolower($roleName);
 if ($roleID === 3) {
-    [$commission] = $database->getUserTypeData($userType, $userID);
+    [$commission] = $database->getUserTypeData("{$userType}s", $userID);
 }
 
 require_once 'assets/views/inc/popup.php';
@@ -115,14 +115,14 @@ require_once 'assets/views/inc/popup.php';
         } else {
             $fundsIcon = 'card';
             if ($roleID === 2) {
-                [$userTypeData] = $database->getUserTypeData($userType, $userID);
+                [$userTypeData] = $database->getUserTypeData("{$userType}s", $userID);
                 $cars = $database->getBoughtCarsByUserID($userID);
 
                 $funds = Format::formatNumber($userTypeData['funds_spent'], 2);
                 $fundsLabel = 'Funds Spent';
                 $carsLabel = 'Cars Bought';
             } else {
-                [$userTypeData] = $database->getUserTypeData($userType, $userID);
+                [$userTypeData] = $database->getUserTypeData("{$userType}s", $userID);
                 $cars = $database->getCarsForUserID($userType, $userID);
 
                 $funds = Format::formatNumber($userTypeData['funds_made'], 2);
