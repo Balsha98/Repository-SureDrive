@@ -133,7 +133,7 @@ SureDrive/
 │   ├── configuration.php       # Application configuration.
 │   └── index.php               # Application entry point.
 │
-└── README.md           # Project documentation
+└── README.md           # Project documentation.
 ```
 
 ## Database Schema
