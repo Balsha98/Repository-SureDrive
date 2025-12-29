@@ -1,4 +1,4 @@
-import { divToTop } from "../helper/general.js";
+import { divToTop } from "../helpers/general.js";
 
 // ***** DOM ELEMENTS ***** //
 const heroSection = $(".section-hero");
@@ -8,44 +8,50 @@ let testimonialsListItems;
 
 // ***** VARIABLES ***** //
 const translateX = [
-    [50, 155, 265, 380, 495],
-    [-55, 50, 155, 265, 380],
-    [-165, -55, 50, 155, 265],
-    [-280, -165, -55, 50, 155],
-    [-395, -280, -165, -55, 50],
+  [50, 155, 265, 380, 495],
+  [-55, 50, 155, 265, 380],
+  [-165, -55, 50, 155, 265],
+  [-280, -165, -55, 50, 155],
+  [-395, -280, -165, -55, 50],
 ];
 
 // Intersection observer.
 const heroSectionObserver = new IntersectionObserver(
-    function (entry) {
-        const [{ isIntersecting }] = entry;
+  function (entry) {
+    const [{ isIntersecting }] = entry;
 
-        if (!isIntersecting) {
-            divToTop.addClass("show-to-top-btn");
-            return;
-        }
+    if (!isIntersecting) {
+      divToTop.addClass("show-to-top-btn");
+      return;
+    }
 
-        divToTop.removeClass("show-to-top-btn");
-    },
-    { root: null, threshold: 0 }
+    divToTop.removeClass("show-to-top-btn");
+  },
+  { root: null, threshold: 0 }
 );
 heroSectionObserver.observe(heroSection[0]);
 
 // Hero welcome.
 setTimeout(() => {
-    ["container", "logo"].forEach((element) => $(`.section-hero-${element}`).toggleClass(`show-hero-${element}`));
+  ["container", "logo"].forEach((element) =>
+    $(`.section-hero-${element}`).toggleClass(`show-hero-${element}`)
+  );
 }, 500);
 
 // ***** FUNCTIONS ***** //
 const generateTestimonials = async function () {
-    const testimonials = await fetch(`assets/json/testimonials.json?ts=${new Date().getTime()}`)
-        .then((response) => response.json())
-        .then((response) => response);
+  const testimonials = await fetch(
+    `assets/json/testimonials.json?ts=${new Date().getTime()}`
+  )
+    .then((response) => response.json())
+    .then((response) => response);
 
-    let i = 0;
-    for (const { heading, quote, image, name, location } of testimonials) {
-        testimonialsList.append(`
-            <li class="testimonials-list-item ${i === 2 ? "active-testimonial" : ""}" data-carousel-index="${i++}">
+  let i = 0;
+  for (const { heading, quote, image, name, location } of testimonials) {
+    testimonialsList.append(`
+            <li class="testimonials-list-item ${
+              i === 2 ? "active-testimonial" : ""
+            }" data-carousel-index="${i++}">
                 <div class="div-testimonial-text-container">
                     <h3 class="heading-tertiary">${heading}</h3>
                     <blockquote class="testimonial-quote">
@@ -80,48 +86,48 @@ const generateTestimonials = async function () {
                 </div>
             </li>
         `);
-    }
+  }
 
-    // Set event listeners.
-    testimonialsListItems = $(".testimonials-list-item");
-    testimonialsListItems.each((_, li) => {
-        $(li).click(setTestimonialIntoView);
-    });
+  // Set event listeners.
+  testimonialsListItems = $(".testimonials-list-item");
+  testimonialsListItems.each((_, li) => {
+    $(li).click(setTestimonialIntoView);
+  });
 
-    // Set the middle, by default.
-    spinTestimonials(2);
+  // Set the middle, by default.
+  spinTestimonials(2);
 };
 
 const setTestimonialIntoView = function () {
-    const classAttr = $(this).attr("class");
-    const carouselIndex = +$(this).data("carousel-index");
-    spinTestimonials(carouselIndex);
+  const classAttr = $(this).attr("class");
+  const carouselIndex = +$(this).data("carousel-index");
+  spinTestimonials(carouselIndex);
 
-    testimonialsListItems.each((_, li) => {
-        if ($(li).hasClass("active-testimonial")) {
-            $(li).removeClass("active-testimonial");
-        }
+  testimonialsListItems.each((_, li) => {
+    if ($(li).hasClass("active-testimonial")) {
+      $(li).removeClass("active-testimonial");
+    }
 
-        if (classAttr.includes("testimonials")) {
-            $(this).addClass("active-testimonial");
-        }
-    });
+    if (classAttr.includes("testimonials")) {
+      $(this).addClass("active-testimonial");
+    }
+  });
 
-    carouselLineItems.each((i, li) => {
-        if ($(li).hasClass("active-line")) {
-            $(li).removeClass("active-line");
-        }
+  carouselLineItems.each((i, li) => {
+    if ($(li).hasClass("active-line")) {
+      $(li).removeClass("active-line");
+    }
 
-        if (i === carouselIndex) {
-            $(li).addClass("active-line");
-        }
-    });
+    if (i === carouselIndex) {
+      $(li).addClass("active-line");
+    }
+  });
 };
 
 const spinTestimonials = function (index) {
-    testimonialsListItems.each((i, li) => {
-        li.style = `transform: translate(${translateX[index][i]}%, -50%);`;
-    });
+  testimonialsListItems.each((i, li) => {
+    li.style = `transform: translate(${translateX[index][i]}%, -50%);`;
+  });
 };
 
 // Generate testimonials.
@@ -130,5 +136,5 @@ generateTestimonials();
 // ***** EVENT LISTENERS ***** //
 // Spin testimonial carousel.
 carouselLineItems.each((_, li) => {
-    $(li).click(setTestimonialIntoView);
+  $(li).click(setTestimonialIntoView);
 });

@@ -38,11 +38,11 @@ class Router
     public static function renderPage($url)
     {
         // Require additional scripts.
-        require_once 'assets/class/Session.php';
-        require_once 'assets/class/Database.php';
-        require_once 'assets/class/helper/Redirect.php';
-        require_once 'assets/class/helper/Format.php';
-        require_once 'assets/class/helper/Image.php';
+        require_once 'assets/classes/Session.php';
+        require_once 'assets/classes/Database.php';
+        require_once 'assets/classes/helpers/Redirect.php';
+        require_once 'assets/classes/helpers/Format.php';
+        require_once 'assets/classes/helpers/Image.php';
 
         $timestamp = time();
         Session::start();

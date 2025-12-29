@@ -1,8 +1,8 @@
 <?php
 
-require_once '../assets/class/Session.php';
-require_once '../assets/class/Database.php';
-require_once '../assets/class/helper/Encoder.php';
+require_once '../assets/classes/Session.php';
+require_once '../assets/classes/Database.php';
+require_once '../assets/classes/helpers/Encoder.php';
 
 Session::start();
 $data = Encoder::fromJSON(file_get_contents('php://input'));

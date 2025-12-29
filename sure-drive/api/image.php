@@ -1,6 +1,6 @@
 <?php
 
-require_once '../assets/class/Database.php';
+require_once '../assets/classes/Database.php';
 $database = Database::getInstance();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

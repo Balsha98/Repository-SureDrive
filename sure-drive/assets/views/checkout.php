@@ -40,9 +40,9 @@ $totalFormatted = Format::formatNumber($total, 2);
     <link rel="icon" href="<?php echo SERVER; ?>/assets/media/car-rental-icon.ico">
     <link rel="stylesheet" href="<?php echo SERVER; ?>/assets/css/general.css?ts=<?php echo $timestamp; ?>">
     <link rel="stylesheet" href="<?php echo SERVER; ?>/assets/css/checkout.css?ts=<?php echo $timestamp; ?>">
-    <script src="<?php echo SERVER; ?>/assets/js/lib/jQuery.js" defer></script>
-    <script type="module" src="<?php echo SERVER; ?>/assets/js/helper/general.js" defer></script>
-    <script type="module" src="<?php echo SERVER; ?>/assets/js/views/checkout.js" defer></script>
+    <script src="<?php echo SERVER; ?>/assets/javascript/lib/jQuery.js" defer></script>
+    <script type="module" src="<?php echo SERVER; ?>/assets/javascript/helpers/general.js" defer></script>
+    <script type="module" src="<?php echo SERVER; ?>/assets/javascript/views/checkout.js" defer></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
     <title>SureDrive | Checkout</title>
 </head>

@@ -12,9 +12,9 @@ if (Session::is_set('logged_in')) {
     <link rel='icon' href='assets/media/car-rental-icon.ico'>
     <link rel='stylesheet' href='assets/css/general.css?ts=<?php echo $timestamp; ?>'>
     <link rel='stylesheet' href='assets/css/signup.css?ts=<?php echo $timestamp; ?>'>
-    <script src='assets/js/lib/jQuery.js' defer></script>
-    <script type="module" src="assets/js/helper/general.js" defer></script>
-    <script type="module" src='assets/js/views/signup.js' defer></script>
+    <script src='assets/javascript/lib/jQuery.js' defer></script>
+    <script type="module" src="assets/javascript/helpers/general.js" defer></script>
+    <script type="module" src='assets/javascript/views/signup.js' defer></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
     <title>SureDrive | Signup</title>
 </head>

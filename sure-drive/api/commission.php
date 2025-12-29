@@ -1,7 +1,7 @@
 <?php
 
-require_once '../assets/class/Database.php';
-require_once '../assets/class/helper/Encoder.php';
+require_once '../assets/classes/Database.php';
+require_once '../assets/classes/helpers/Encoder.php';
 
 $database = Database::getInstance();
 $data = Encoder::fromJSON(file_get_contents('php://input'));
