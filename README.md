@@ -102,7 +102,7 @@ http://localhost/local-repository-directory
 ## Project Structure
 
 ```
-SureDrive/
+Repository-SureDrive/
 │
 ├── sure-drive/         # Main application directory.
 │   │
