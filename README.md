@@ -80,7 +80,7 @@ cd Repository-SureDrive/sure-drive
 3. Import the database:
 
 ```bash
-# Import the SQL file into your MySQL database
+# Import the SQL file into your MySQL database.
 mysql -u root -p sure_drive < assets/sql/database.sql
 ```
 
