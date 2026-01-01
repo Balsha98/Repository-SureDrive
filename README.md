@@ -4,64 +4,64 @@ A comprehensive car dealership web application with role-based access control. B
 
 ## Features
 
-- **User Authentication** - Secure login and registration system.
-- **Role-Based Access Control** - Four distinct user roles with specific permissions.
-- **Vehicle Browsing** - Browse available cars with detailed information.
-- **Purchase System** - Registered users can buy vehicles.
-- **Inventory Management** - Add, update, and manage vehicle listings.
-- **User Management** - Admin control over user accounts and roles.
-- **Secure Transactions** - Protected purchase workflow.
+-   **User Authentication** - Secure login and registration system.
+-   **Role-Based Access Control** - Four distinct user roles with specific permissions.
+-   **Vehicle Browsing** - Browse available cars with detailed information.
+-   **Purchase System** - Registered users can buy vehicles.
+-   **Inventory Management** - Add, update, and manage vehicle listings.
+-   **User Management** - Admin control over user accounts and roles.
+-   **Secure Transactions** - Protected purchase workflow.
 
 ## User Roles & Permissions
 
 ### Administrator
 
-- Full system access and control.
-- Create and manage all user types (including other admins).
-- Add, update, and delete vehicles.
-- Manage owners, sellers, and buyers.
-- View all transactions and system data.
+-   Full system access and control.
+-   Create and manage all user types (including other admins).
+-   Add, update, and delete vehicles.
+-   Manage owners, sellers, and buyers.
+-   View all transactions and system data.
 
 ### Owner
 
-- Manage dealership inventory.
-- Add, update, and delete vehicles.
-- View sales reports and statistics.
-- Monitor dealership performance.
+-   Manage dealership inventory.
+-   Add, update, and delete vehicles.
+-   View sales reports and statistics.
+-   Monitor dealership performance.
 
 ### Seller
 
-- Add and update vehicle listings.
-- View assigned inventory.
-- Track sales and commissions.
-- Manage vehicle details and pricing.
+-   Add and update vehicle listings.
+-   View assigned inventory.
+-   Track sales and commissions.
+-   Manage vehicle details and pricing.
 
 ### Buyer
 
-- Browse available vehicles.
-- View detailed car information.
-- Purchase vehicles.
-- View purchase history.
-- Manage personal profile.
+-   Browse available vehicles.
+-   View detailed car information.
+-   Purchase vehicles.
+-   View purchase history.
+-   Manage personal profile.
 
 ## Tech Stack
 
-- **PHP** - Server-Side Logic & Backend
-- **MySQL** - Database Management
-- **HTML5** - Structure & Content
-- **CSS3** - Styling & Layout
-- **JavaScript** - Client-Side Interactivity
-- **jQuery** - DOM Manipulation & AJAX Requests
+-   **PHP** - Server-Side Logic & Backend
+-   **MySQL** - Database Management
+-   **HTML5** - Structure & Content
+-   **CSS3** - Styling & Layout
+-   **JavaScript** - Client-Side Interactivity
+-   **jQuery** - DOM Manipulation & AJAX Requests
 
 ## Installation
 
 ### Prerequisites
 
-- PHP 7.4 or higher.
-- MySQL 5.7 or higher.
-- Apache web server.
-- MySQL server.
-- Composer (optional, for dependencies).
+-   PHP 7.4 or higher.
+-   MySQL 5.7 or higher.
+-   Apache web server.
+-   MySQL server.
+-   Composer (optional, for dependencies).
 
 ### Setup Instructions
 
@@ -140,56 +140,56 @@ Repository-SureDrive/
 
 The application uses a relational database with the following main tables:
 
-- **users** - User accounts and authentication.
-- **descriptions** - User-related descriptions.
-- **rols** - User role definitions.
-- **cars** - Car inventory and details.
-- **cars_bought** - Bought car inventory and details.
-- **sales** - Transaction records.
-- **shipments** - Shipment records.
-- **owners** - Owner profiles.
-- **sellers** - Seller profiles.
-- **buyers** - Buyer profiles.
-- **newsletters** - Newsletter information.
-- **logs** - Application log information.
+-   **users** - User accounts and authentication.
+-   **descriptions** - User-related descriptions.
+-   **rols** - User role definitions.
+-   **cars** - Car inventory and details.
+-   **cars_bought** - Bought car inventory and details.
+-   **sales** - Transaction records.
+-   **shipments** - Shipment records.
+-   **owners** - Owner profiles.
+-   **sellers** - Seller profiles.
+-   **buyers** - Buyer profiles.
+-   **newsletters** - Newsletter information.
+-   **logs** - Application log information.
 
 ## Security Features
 
-- Password hashing with PHP's `hash()` function.
-- SQL injection prevention with prepared statements.
-- Session management for user authentication.
-- Role-based access control (RBAC).
-- Input validation and sanitization.
-- Secure purchase workflow.
+-   Password hashing with PHP's `hash()` function.
+-   SQL injection prevention with prepared statements.
+-   Session management for user authentication.
+-   Role-based access control (RBAC).
+-   Input validation and sanitization.
+-   Secure purchase workflow.
 
 ## Future Enhancements
 
 ### Email Notifications (SMTP Integration)
 
-- **Purchase Confirmations** - Email receipts for buyers.
-- **Inventory Alerts** - Notifications for new vehicle listings.
-- **Account Verification** - Email verification for new users.
-- **Password Recovery** - Secure password reset via email.
-- **Sales Notifications** - Alerts for sellers on successful sales.
+-   **Purchase Confirmations** - Email receipts for buyers.
+-   **Inventory Alerts** - Notifications for new vehicle listings.
+-   **Account Verification** - Email verification for new users.
+-   **Password Recovery** - Secure password reset via email.
+-   **Sales Notifications** - Alerts for sellers on successful sales.
 
 ### Additional Features
 
-- **Payment Gateway** - Integrate Stripe/PayPal for online payments
-- **Vehicle Comparison** - Side-by-side comparison tool.
-- **Favorites/Wishlist** - Save vehicles for later viewing.
-- **Reviews & Ratings** - Customer feedback system.
-- **Export Reports** - Generate sales reports in PDF/Excel.
+-   **Payment Gateway** - Integrate Stripe/PayPal for online payments
+-   **Vehicle Comparison** - Side-by-side comparison tool.
+-   **Favorites/Wishlist** - Save vehicles for later viewing.
+-   **Reviews & Ratings** - Customer feedback system.
+-   **Export Reports** - Generate sales reports in PDF/Excel.
 
 ## Roadmap
 
-- [x] User authentication and role-based access.
-- [x] Vehicle browsing and management.
-- [x] Purchase system for registered users.
-- [x] Admin user management.
-- [ ] SMTP email notification system.
-- [ ] Payment gateway integration.
-- [ ] Vehicle comparison feature.
-- [ ] Customer review system.
+-   [x] User authentication and role-based access.
+-   [x] Vehicle browsing and management.
+-   [x] Purchase system for registered users.
+-   [x] Admin user management.
+-   [ ] SMTP email notification system.
+-   [ ] Payment gateway integration.
+-   [ ] Vehicle comparison feature.
+-   [ ] Customer review system.
 
 ## Let's Connect
 
@@ -200,7 +200,3 @@ If you enjoyed this project or have any questions, feel free to reach out!
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Balsha98)
 
 ⭐ If you found this project helpful, please consider giving it a star!
-
----
-
-Made with PHP, HTML5, CSS3, JavaScript (jQuery), and ❤️!
