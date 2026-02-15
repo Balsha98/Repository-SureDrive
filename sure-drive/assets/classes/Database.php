@@ -6,13 +6,13 @@ class Database extends PDO
 
     private function __construct($dbName, $username, $password)
     {
-        parent::__construct("mysql:hostname=sql108.infinityfree.com;dbname={$dbName};", $username, $password);
+        parent::__construct("mysql:hostname=localhost;dbname={$dbName};", $username, $password);
     }
 
     public static function getInstance()
     {
         if (!isset(self::$db)) {
-            self::$db = new Database('if0_41165957_sure_drive', 'if0_41165957', 'personalprojects');
+            self::$db = new Database('sure_drive', 'root', '');
         }
 
         return self::$db;
